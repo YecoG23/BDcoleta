@@ -104,9 +104,9 @@ WSGI_APPLICATION = 'BDColeta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'BDColeta_',
+        'NAME': 'BDColeta_v7',
         'USER': 'postgres',
-        'PASSWORD': '123',
+        'PASSWORD': 'yecopostgresql',
         'CONN_MAX_AGE': 60,
         'HOST': 'localhost',
         'PORT': '',
@@ -145,7 +145,17 @@ LOGIN_REDIRECT_URL = '/'
 
 #EMAIL BACKEND AND CONFIGURATIONS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'postmaster@ns01.freenom.com'
+# EMAIL_HOST_PASSWORD = 'yecofreenom23'
+# EMAIL_USE_TLS = True
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'BDColeta@gmail.com'
+EMAIL_HOST_PASSWORD = 'yecobdcoleta'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'BDColeta Admin'
 
 #DJANGO REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7
