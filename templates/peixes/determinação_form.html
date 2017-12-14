@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Novo Coletor{% endblock title %}
+
+{% block content %}
+<div class="row">
+<div class='col-sm-6 col-sm-offset-3'>
+<div class="page-header">
+<h1>Novo Determinador</h1>
+</div>
+
+<form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="form-group">
+            <a href="javascript:history.back()" class="btn btn-default">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Criar Determinador</button>
+        </div>
+</form>
+</div>
+</div>
+{% endblock %}

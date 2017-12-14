@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}DashBoard Peixes{% endblock title %}
+
+{% block styles %}
+  <link href="{% static 'css/sidebarYosh_modif.css' %}" rel="stylesheet">
+  <style type='text/css'>
+    .navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+  }
+
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">  
+    <!-- Sidebar -->
+            <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-th-list"></span></a></li>
+        </ul>
+        <ul class="sidebar-nav" id="sidebar">
+          <li><a>Usuarios<span class="sub_icon glyphicon glyphicon-user"></span></a></li>
+          <!--  <ul class="sidebar-nav" id="sidebar">
+                <li><a>link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+           </ul> -->
+          <li><a>Mensagem<span class="sub_icon glyphicon glyphicon-comment"></span></a></li>
+          <li><a href="{% url 'new_projeto' %}">Projeto<span class="sub_icon glyphicon glyphicon-tasks"></span></a></li>
+          <li><a>asd<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <li><a>234sdf<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+
+        </ul>
+    </div>
+          
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+          {% if perms.peixes.can_view_projeto %}
+            {% if num_projetos %}    
+            <h3 class="page-header">Projeto Atual: 
+              <small>
+                <select> 
+                {% for pro in projetos%}
+                  <option value="{{pro.id}}">{{pro.nome}}</option>
+                {% endfor %}
+                </select>
+              </small>
+            </h3>
+            {% else%}
+              <h3 class="page-header">Nao tem nenhum projeto!.</h3>
+            {% endif %}
+          </div>
+          <div class="row">
+            {% if not num_projetos %}
+              {% if perms.peixes.can_add_projeto %}
+                Crie um projeto agora <a href="{% url 'new_projeto' %}"><button type="button" class="btn btn-info">Criar</button></a>
+              {% endif %}
+            {% else %}
+              Curador: {{ curador |upper}}
+            {% endif %}
+            <div class="pull-right">
+              <a href="{% url 'list_projetos' %}"><button type="button" class="btn btn-success">Ver todos os projetos</button></a>
+            </div>
+          </div>
+
+            <div class="row">
+              <h3 class="page-header">Integrantes do Projeto</h3>
+            </div>
+            <div class="row">
+              STUFF
+            <div class="pull-right">
+              <a href=""><button type="button" class="btn btn-success">Visualizar</button></a>
+            </div>
+
+              <div class="row">
+                <h3 class="page-header">Petições</h3>
+              </div>
+              <div class="row">
+                STUFF
+              <div class="pull-right">
+                <a href=""><button type="button" class="btn btn-success">Visualizar</button></a>
+              </div>
+              
+            
+          </div>
+          {% else %}
+            <h3 class="page-header">Nao pertence a nenhum projeto!.</h3>
+            {{request.user.get_all_permissions}}
+            <div class="pull-right">
+              <a href="{% url 'list_projetos' %}"><button type="button" class="btn btn-success">Ver todos os projetos</button></a>
+            </div>
+          {% endif%}
+            
+        </div>
+      
+      
+</div>
+    
+{% endblock %}
+
+{% block js_sidebar %}
+
+
+<script type="text/javascript">
+  $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+  });
+
+</script>
+{% endblock %}

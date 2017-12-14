@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+<div class="col-sm-4 col-sm-offset-4">
+<p class='lead' >"Sua conta encontra-se ativa agora!."</p>
+<a href="{% url 'auth_login' %}">Inicie sessão agora.</a>
+</div>
+</div>
+<hr>
+{% endblock %}

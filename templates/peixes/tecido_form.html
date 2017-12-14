@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load js %}
+
+{% block title %}Tecidos{% endblock title %}
+
+{% block content %}
+<div class="row">
+<div class='col-sm-6 col-sm-offset-3'>
+<div class="page-header">
+  <h1>
+    {% if not object.pk %}
+            Novo Tecido
+          {% else %}
+            Editar Tecido
+          {% endif %}
+  </h1>
+</div>
+<form class="form-horizontal" method="post" id="certform">
+        {% csrf_token %}
+        {{form.lote |attr:"class:form-control" |as_crispy_field }}
+        {{form.especie |attr:"readonly:readonly"  | as_crispy_field}}
+        {{form.data | as_crispy_field}}
+        {{form.musculo | as_crispy_field}}
+        {{form.nadadeira | as_crispy_field}}
+        {{form.inteiro | as_crispy_field}}
+        {{form.outro | as_crispy_field}}
+        <div class="form-group">
+        <a href="javascript:history.back()" class="btn btn-default">Cancelar</a>
+        <button type="submit" class="btn btn-primary">
+          {% if not object.pk %}
+                Criar Tecido
+          {% else %}
+                Atualizar Tecido
+          {% endif %}
+        </button>
+        </div>
+</form>
+</div>
+</div>
+<script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  <script type="text/javascript">
+      $(function() {
+          $('#id_data').datetimepicker({
+            format: 'DD/MM/YYYY',
+            widgetPositioning:{
+                                horizontal: 'auto',
+                                vertical: 'bottom'
+                            },
+            // extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+            sideBySide: true,
+          });
+      });
+  </script>
+
+	<script>
+	$(document).ready(function () {
+	    $('#id_lote').on('change', function (e) {
+	    var consulta = {{consulta | js}};
+	    console.log(consulta)
+	    var findit = false;
+	    $.ajax({
+        url: '{% url "update_consulta" %}',
+        dataType: 'json',
+        success: function (data) {
+          var consulta = data.new_consulta;
+          console.log(consulta);
+          var findit = false;
+          for(var i =0; i<consulta.length;i++){   
+    	       if($('#id_lote').val()==consulta[i][0])
+    	       {
+    	       		$('#id_especie').val(consulta[i][1]);
+    	       		findit = true;
+    	       }
+    	       }
+      		    if(!findit){
+      		    	$('#id_especie').val('');
+      		    }
+        }
+      });
+	    for(var i =0; i<consulta.length;i++){   
+	       if($('#id_lote').val()==consulta[i][0])
+	       {
+	       		$('#id_especie').val(consulta[i][1]);
+	       		findit = true;
+	       }
+	    }
+		    if(!findit){
+		    	$('#id_especie').val('');
+		    }
+
+
+	    });
+	    
+	});
+	</script>
+
+{{ form.media }}
+{% endblock %}
+
+{% block page_css %}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" />
+{% endblock %}
+

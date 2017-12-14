@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Tecidos{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+
+      <div class="page-header">
+        <h1>Lista de Tecidos</h1>
+      </div>
+
+      {% if not object_list %}
+        <p><strong>Não há nenhum tecido registrado.</strong> Crie <a href=""> um agora?</a>
+      {% endif %}
+
+      <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>ID #</th>
+            <th>Lote</th>
+            <th>Especie</th>
+            <th>Data</th>
+            <th>Musculo</th>
+            <th>Nadadeira</th>
+            <th>Inteiro</th>
+            <th>Outro</th>
+          </tr>
+        </thead>
+        <tfoot>
+            <th>ID #</th>
+            <th>Lote</th>
+            <th>Especie</th>
+            <th>Data</th>
+            <th>Musculo</th>
+            <th>Nadadeira</th>
+            <th>Inteiro</th>
+            <th>Outro</th>
+        </tfoot>
+        <tbody>
+          {% for tec in object_list %}
+            <tr>
+              <td><a href="{{ tec.get_absolute_url }}">{{ tec.pk }}</a></td>
+              <td> {{ tec.lote }}</td>
+              <td> {{ tec.especie }}</td>
+              <td> {{ tec.data }}</td>
+              <td> {{ tec.musculo }}</td>
+              <td> {{ tec.nadadeira }}</td>
+              <td> {{ tec.inteiro }}</td>
+              <td> {{ tec.outro }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <a class="btn btn-primary" href="{% url 'list_tecidos_export' %}">Exportar como CSV</a>
+    </div>
+  </div>
+{% endblock %}

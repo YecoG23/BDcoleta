@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title%} Login {%endblock%}
+
+{% block content %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>Inicio de Sessão</h1>
+<form method="post" action="{% url 'auth_login' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+
+  <input class='btn btn-block btn-primary' type="submit" value="Entrar" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+</div>
+
+</div>
+<hr/>
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3 text-align-center'>
+<p>Esqueceu a senha? <a href="{% url 'auth_password_reset' %}">Recuperar-la</a>!</p>
+</div>
+</div>
+
+{% endblock %}

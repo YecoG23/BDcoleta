@@ -1,0 +1,253 @@
+{% load bootstrap3 %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% endblock title %} - BD Coleção</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for carousel -->
+    <link href="{% static 'carousel.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{% static 'assets/css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{% static 'assets/js/ie-emulation-modes-warning.js' %}"></script>
+
+    <style type='text/css'>
+        ul.nav li.dropdown:hover ul.dropdown-menu {
+            display: block;
+        }
+    </style>
+
+    
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> -->
+    <!-- Custom styles for navbar static top -->
+    <!-- <link href="{% static 'navbar-static-top.css' %}" rel="stylesheet"> -->
+
+    <!-- CSS -->
+    {% bootstrap_css %}
+
+    {% block page_css %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    {% endblock %}
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+    {% block styles %}
+    {% endblock %}
+
+    
+    
+  </head>
+
+  <body>
+
+  
+  {% if not view.is_popup %}
+    <div class="navbar navbar-toggleable-md navbar-static-top navbar-light bg-faded" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".collapse.navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">BDColeta</a>
+        </div>
+        <!-- {{ perms.user }}{{perms.peixes.add_projeto}} -->
+        <div id ="navbar" class="navbar-collapse collapse">            
+            <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Peixes<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'home_peixes' %}">DashBoard</a></li>
+                  <li role="separator" class="divider"></li>
+
+                  <!-- <li class="dropdown-header">Lotes</li> -->
+
+                  {% if not perms.peixes.add_lote %} 
+                  <li class="disabled" disabled="disabled"><a href="#">Novo Lote</a></li>
+                  {% else %}
+                  <li><a href="{% url 'new_lote' %}">Novo Lote</a></li>
+                  {% endif %}
+                  <li><a href="{% url 'list_lotes' %}">Lista de Lotes</a></li>
+                  <li role="separator" class="divider"></li>
+
+                  <!-- <li class="dropdown-header">Determinação</li> -->
+
+                  {% if not perms.peixes.add_determinação %} 
+                  <li class="disabled" disabled="disabled"><a href="#">Novo Determinador</a></li>
+                  {% else %}
+                  <li><a href="{% url 'new_determinador' %}">Novo Determinador</a></li>
+                  {% endif %}             
+                  <li><a href="{% url 'list_determinadores' %}">Lista de Determinadores</a></li>
+
+                  <!-- <li class="dropdown-header">Coletor</li> -->
+
+                  {% if not perms.peixes.add_coletor %} 
+                  <li class="disabled" disabled="disabled"><a href="#">Novo Coletor</a></li>
+                  {% else %}
+                  <li><a href="{% url 'new_coletor' %}">Novo Coletor</a></li>
+                  {% endif %} 
+
+                  <li><a href="{% url 'list_coletores' %}">Lista de Coletores</a></li>
+                  
+                  <!-- <li class="dropdown-header">Tecido</li> -->
+
+                  {% if not perms.peixes.add_tecido %} 
+                  <li class="disabled" disabled="disabled"><a href="#">Novo Tecido</a></li>
+                  {% else %}
+                  <li><a href="{% url 'new_tecido' %}">Novo Tecido</a></li>
+                  {% endif %} 
+                  
+
+                  <li><a href="{% url 'list_tecidos' %}">Lista de Tecidos</a></li>
+                </ul>
+              </li>
+            
+            </ul>
+             
+            <ul class="nav navbar-nav navbar-right">
+            {% if not request.user.is_authenticated %}
+              <li>
+                <p class="navbar-btn">
+                    <a href="{% url 'registration_register' %}" class="btn btn-default"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Registrar-se</a>
+                </p>
+              </li>
+              <li> 
+                <p class="navbar-text"> </p>
+              </li>
+              <li>
+                <p class="navbar-btn">
+                    <a href="{% url 'auth_login' %}" class="btn btn-default"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Inicie Sessão</a>
+                </p>  
+              </li>
+              
+            {% else %}
+              <li class="navbar-text">
+                Bem-vindo <span class="label label-default text-uppercase">{{request.user}}</span>
+              </li>
+              <li class="navbar-text">
+                Autorização  <span class="label label-default text-uppercase">
+                {% if not request.user.is_superuser%}
+                  {% if request.user.groups.all %}
+                      {% for group in request.user.groups.all %}
+                          {{group.name}} 
+                      {% endfor %}
+                  {% else %}
+                      CONVIDADO
+                  {% endif %}
+                {% else %}
+                  ADMINISTRADOR
+                {% endif%}
+                </span>
+              </li>
+              <li class="dropdown">
+                  <button class="btn btn-default dropdown-toggle navbar-btn" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu ">
+                    <li><a href="{% url 'edit_profile' request.user.username %}">Dados Pessoais</a></li>
+                    <li><a href="{% url 'auth_password_change' %}">Trocar senha</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'auth_logout' %}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a></li>
+                  </ul>
+                
+                <!-- <p class="navbar-btn">
+                    <a href="{% url 'auth_logout' %}" class="btn btn-default"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Encerrar Sessão</a>
+                </p> -->
+              </li>
+            {% endif %}
+              
+            </ul>
+            
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}  
+
+      {% block content %}
+      {% endblock content %}
+
+      <footer align="center">
+        <p>&copy; UNILA 2017</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- JavaScript -->
+    {% bootstrap_javascript jquery=1 %}
+    {% block page_js %}
+
+    {% endblock %}
+    
+    {% block select_projeto %}
+
+    {% endblock %}
+    
+    {% block js_sidebar %}
+
+    {% endblock %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"> </script> -->
+  
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"> </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('#example').DataTable(
+       {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+        }
+    }
+      );
+    } );
+
+  </script>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static 'assets/js/vendor/holder.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'assets/js/ie10-viewport-bug-workaround.js' %}"></script>
+
+    
+<!--     {% block js_data_tables %}
+
+    {% endblock js_data_tables %} -->
+  </body>
+
+</html>

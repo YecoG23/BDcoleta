@@ -1,0 +1,502 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"add",
+				"add_new_model"
+			],
+			[
+				"rend",
+				"render_to_string"
+			],
+			[
+				"suc",
+				"success_url"
+			],
+			[
+				"Cre",
+				"CreateLoteForm"
+			],
+			[
+				"col",
+				"col-md-3"
+			],
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"C",
+				"CASCADE"
+			],
+			[
+				"fo",
+				"ForeignKey"
+			],
+			[
+				"Da",
+				"DateTimeField"
+			],
+			[
+				"ch",
+				"CharField"
+			],
+			[
+				"ro",
+				"router"
+			],
+			[
+				"Model",
+				"ModelViewSet"
+			],
+			[
+				"User",
+				"UserSerializer"
+			],
+			[
+				"ass",
+				"assertQuerysetEqual"
+			],
+			[
+				"quest",
+				"question_text"
+			],
+			[
+				"old",
+				"old_question"
+			],
+			[
+				"future",
+				"future_question"
+			],
+			[
+				"questio",
+				"question"
+			],
+			[
+				"sele",
+				"selected_choice"
+			],
+			[
+				"Http",
+				"HttpResponse"
+			],
+			[
+				"try",
+				"try\tTry/Except"
+			],
+			[
+				"que",
+				"question"
+			],
+			[
+				"get",
+				"get_object_or_404"
+			],
+			[
+				"H",
+				"HttpResponse"
+			],
+			[
+				"ques",
+				"question_id"
+			],
+			[
+				"q",
+				"question_id"
+			],
+			[
+				"pub",
+				"pub_date"
+			],
+			[
+				"pu",
+				"python_2_unicode_compatible"
+			],
+			[
+				"Ch",
+				"CharField"
+			],
+			[
+				"mod",
+				"models"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "peixes/forms.py",
+			"settings":
+			{
+				"buffer_size": 1397,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Django projects examples/BDColeta",
+		"/D/Django projects examples/BDColeta/BDColeta",
+		"/D/Django projects examples/BDColeta/peixes"
+	],
+	"file_history":
+	[
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/forms/__init__.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/forms/forms.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/forms/formsets.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/forms/models.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/forms/widgets.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/views/csrf.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/conf/global_settings.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/bin/django-admin.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/__init__.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/__main__.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/shortcuts.py",
+		"/D/Django projects examples/BDColeta/peixes/forms.py",
+		"/C/Users/YECO/Envs/trydjango18/Try-Django-1.8/src/newsletter/forms.py",
+		"/D/Django projects examples/BDColeta/peixes/models.py",
+		"/C/Users/YECO/Desktop/jogo-da-forca-master/main.py",
+		"/D/Django projects examples/BDColeta/templates/peixes/lote_form.html",
+		"/D/Django projects examples/BDColeta/peixes/views.py",
+		"/D/Django projects examples/BDColeta/peixes/urls.py",
+		"/D/Django projects examples/BDColeta/BDColeta/settings/common.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/tekextensions/views.py",
+		"/D/Django projects examples/BDColeta/templates/popupplus.html",
+		"/D/Django projects examples/BDColeta/templates/peixes/lote_confirm_delete.html",
+		"/D/Django projects examples/BDColeta/templates/peixes/lote_detail.html",
+		"/D/Django projects examples/BDColeta/media/js/RelatedObjectLookups.js",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/static/admin/js/admin/RelatedObjectLookups.js",
+		"/E/BDColeta_v2/templates/peixes/lote_form.html",
+		"/D/Django projects examples/BDColeta/templates/index.html",
+		"/D/Django projects examples/django-export-master/export/views.py",
+		"/C/Users/YECO/Envs/django-2scoops/django-twoscoops-project/project_name/project_name/wsgi.py",
+		"/C/Users/YECO/Envs/django-2scoops/django-twoscoops-project/project_name/manage.py",
+		"/C/ProgramData/Anaconda3/Scripts/django-admin.py",
+		"/D/Django projects examples/BDColeta/templates/Peixes/lote_list.html",
+		"/D/Django projects examples/BDColeta/templates/Peixes/lote_form.html",
+		"/D/Django projects examples/BDColeta/BDColeta/urls.py",
+		"/D/Django projects examples/BDColeta/Peixes/urls.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/actions.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/apps.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/forms.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/helpers.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/models.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/options.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/sites.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/utils.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/contrib/admin/templatetags/admin_list.py",
+		"/D/Django projects examples/BDColeta/Peixes/views.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/template/loaders/base.py",
+		"/C/ProgramData/Anaconda3/Lib/site-packages/django/template/backends/django.py",
+		"/D/yEco/UNILA-2016-II/Teoria II/Programa metodo de rigidez/Programa treliça/.spyproject/MetodoRigidez.py",
+		"/C/Users/YECO/Envs/edge/edge/src/templates/home.html",
+		"/C/Users/YECO/.spyder2-py3/template.py",
+		"/C/Users/YECO/Envs/edge/edge/src/project_name/wsgi.py",
+		"/C/Users/YECO/Envs/edge/edge/src/project_name/settings/base.py",
+		"/C/Users/YECO/Envs/edge/edge/src/manage.py",
+		"/C/Users/YECO/Envs/edge/edge/src/project_name/settings/production.py",
+		"/C/Users/YECO/Envs/edge/edge/src/project_name/settings/development.py",
+		"/C/Users/YECO/Envs/edge/edge/src/project_name/settings/local.env",
+		"/D/Django projects examples/BDColeta/Peixes/models.py",
+		"/D/Django projects examples/BDColeta/templates/Peixes/lote_confirm_delete.html",
+		"/D/Django projects examples/BDColeta/templates/Peixes/lote_detail.html",
+		"/D/Django projects examples/BDColeta/templates/base.html",
+		"/D/Django projects examples/BDColeta/Peixes/admin.py",
+		"/D/Django projects examples/BDColeta/BDColeta/settings/production.py",
+		"/D/Django projects examples/BDColeta/BDColeta/wsgi.py",
+		"/D/Django projects examples/BDColeta/BDColeta/settings/__init__.py",
+		"/D/Django projects examples/BDColeta/BDColeta/settings/test.py",
+		"/D/Django projects examples/BDColeta/app.json",
+		"/D/Django projects examples/BDColeta/.travis.yml",
+		"/D/Django projects examples/BDColeta/.gitignore",
+		"/D/Django projects examples/BDColeta/.env_example",
+		"/D/Django projects examples/BDColeta/templates/reminders/appointment_detail.html",
+		"/D/Django projects examples/BDColeta/templates/reminders/appointment_list.html",
+		"/D/Django projects examples/BDColeta/DBColeta/settings/common.py",
+		"/D/Django projects examples/BDColeta/DBColeta/wsgi.py",
+		"/D/Django projects examples/BDColeta/manage.py",
+		"/D/Django projects examples/BDColeta/.coveragerc",
+		"/D/Django projects examples/BDColeta/DBColeta/urls.py",
+		"/D/Django projects examples/BDColeta/Peixes/tests.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/reminders/models.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/home/tests.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/home/models.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/settings/default.py",
+		"/C/Users/YECO/Envs/appointments/Lib/token.py",
+		"/C/Users/YECO/Envs/simplemooc/simplemooc/settings.py",
+		"/C/Users/YECO/Envs/appointments/Scripts/activate_this.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/appointments/settings/local.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/appointments/settings/celery.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/appointments/urls.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/urls.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/reminders/views.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/appointments/settings/common.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/appointments/settings/production.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/reminders/migrations/0001_initial.py",
+		"/C/Users/YECO/Envs/appointments/appointment-reminders-django/reminders/admin.py",
+		"/C/Users/YECO/Envs/appointments/Lib/site-packages/psycopg2/psycopg1.py",
+		"/C/Users/YECO/Envs/djangorest/tutorial/tutorial/urls.py",
+		"/C/Users/YECO/Envs/djangorest/tutorial/tutorial/settings.py",
+		"/C/Users/YECO/Envs/djangorest/tutorial/tutorial/quickstart/serializers.py",
+		"/C/Users/YECO/Envs/djangorest/tutorial/tutorial/quickstart/views.py",
+		"/C/Users/YECO/Envs/djangorest/tutorial/tutorial/serializers.py",
+		"/C/Users/YECO/Envs/djangorest/Scripts/django-admin.py",
+		"/C/Users/YECO/Envs/simplemooc/simplemooc/manage.py",
+		"/C/Users/YECO/Envs/simplemooc/simplemooc/urls.py",
+		"/C/Users/YECO/Envs/simplemooc/simplemooc/core/views.py",
+		"/C/Users/YECO/Envs/pyenvtest/Lib/site-packages/django/conf/urls/__init__.py",
+		"/C/Users/YECO/Envs/simplemooc/manage.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/home/views.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/templates/base.html",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/templates/home.html",
+		"/D/yEco/Project_IC_2017/DBUNILA/DBUNILA/settings.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/settings/local.template.py",
+		"/D/yEco/Project_IC_2017/DBUNILA/polls/urls.py",
+		"/D/yEco/Project_IC_2017/DBUNILA/polls/views.py",
+		"/C/Users/YECO/Envs/examples/django-sample-app/example/wsgi.py",
+		"/C/Users/YECO/Envs/pyenvtest2/django-project-template-master/project_name/settings/deploy.py",
+		"/C/Users/YECO/Envs/pyenvtest2/django-project-template-master/project_name/urls.py",
+		"/C/Users/YECO/Envs/pyenvtest2/django-project-template-master/project_name/wsgi.py",
+		"/C/Users/YECO/Envs/pyenvtest2/django-project-template-master/project_name/settings/local.example.py",
+		"/C/Users/YECO/Envs/pyenvtest2/django-project-template-master/project_name/settings/dev.py",
+		"/C/Users/YECO/Envs/pyenvtest2/django-project-template-master/project_name/settings/base.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/wsgi.py",
+		"/C/Users/YECO/Envs/pyenvtest/django-sample-app/projectname/manage.py",
+		"/C/Users/YECO/Envs/examples/Lib/site-packages/django/db/backends/postgresql_psycopg2/version.py",
+		"/C/Users/YECO/Envs/examples/django-sample-app/example/manage.py",
+		"/D/Django projects examples/example/django-sample-app/bookstore/wsgi.py",
+		"/D/Django projects examples/example/django-sample-app/bookstore/settings/local.py",
+		"/D/Django projects examples/example/django-sample-app/bookstore/settings/__init__.py",
+		"/D/Django projects examples/example/django-sample-app/bookstore/settings/default.py",
+		"/D/Django projects examples/example/django-sample-app/bookstore/settings/local.template.py"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"D:\\Django projects examples\\BDColeta\\BDColeta",
+			"D:\\Django projects examples\\BDColeta",
+			"C:\\Users\\YECO\\Envs\\edge",
+			"D:\\Django projects examples\\BDColeta"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"showAddAnotherPopup",
+			"admin_media",
+			"/*",
+			"Peixes",
+			"project name",
+			"whitenoise",
+			"DB",
+			"appointments",
+			"latest_ques",
+			"project_name",
+			"print(\"Hello world\")",
+			"'),\n",
+			"\n@",
+			"debug",
+			"database",
+			"print(\"Hello world\")"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"BDColeta"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "peixes/forms.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1397,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								83,
+								83
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Banco de Dados_Coleta.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"view",
+				"DBUNILA\\polls\\views.py"
+			],
+			[
+				"urls",
+				"DBUNILA\\polls\\urls.py"
+			],
+			[
+				"ur",
+				"DBUNILA\\polls\\urls.py"
+			],
+			[
+				"model",
+				"DBUNILA\\polls\\models.py"
+			],
+			[
+				"sett",
+				"DBUNILA\\DBUNILA\\settings.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 288.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

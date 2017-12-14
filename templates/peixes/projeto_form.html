@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Coleção Peixes{% endblock title %}
+
+{% block styles %}
+  <link href="{% static 'css/sidebarYosh_modif.css' %}" rel="stylesheet">
+  <style type='text/css'>
+    .navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+  }
+
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">  
+    <!-- Sidebar -->
+            <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-th-list"></span></a></li>
+        </ul>
+        <ul class="sidebar-nav" id="sidebar">
+          <li><a>Usuarios<span class="sub_icon glyphicon glyphicon-user"></span></a></li>
+          <!--  <ul class="sidebar-nav" id="sidebar">
+                <li><a>link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+                <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+           </ul> -->
+          <li><a>Mensagem<span class="sub_icon glyphicon glyphicon-comment"></span></a></li>
+          <li><a href="{% url 'new_projeto' %}">Projeto<span class="sub_icon glyphicon glyphicon-tasks"></span></a></li>
+          <li><a>asd<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <li><a>234sdf<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        </ul>
+      </div>
+          
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+<!--           <div class="row">
+            <h3 class="page-header">Projetos</h3>
+          </div> -->
+          <div class="row">              
+            <div class='col-sm-6 col-sm-offset-3'>
+              <div class="page-header">
+              <h1>Novo Projeto</h1>
+              </div>
+              <form class="form-horizontal" method="post" id="certform">
+                      {% csrf_token %}
+                      {{form.nome |as_crispy_field }}
+                      {{form.descrição | as_crispy_field}}
+                      {{form.curador |attr:"readonly:readonly" | as_crispy_field}}
+                      <div class="form-group">
+                      <a href="javascript:history.back()" class="btn btn-default">Cancelar</a>
+                      <button type="submit" class="btn btn-primary">Criar Projeto</button>
+                      </div>
+              </form>
+            </div>
+          </div>
+           
+          </div>
+        </div>
+        <hr>
+      
+      
+</div>
+    
+{% endblock %}
+
+{% block js_sidebar %}
+
+
+<script type="text/javascript">
+  $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+  });
+
+</script>
+{% endblock %}

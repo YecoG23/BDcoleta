@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Determinadores{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+
+      <div class="page-header">
+        <h1>Lista de Determinadores</h1>
+      </div>
+
+      {% if not object_list %}
+        <p><strong>Não há nenhum determinador registrado.</strong> Crie <a href=""> um agora?</a>
+      {% endif %}
+
+      <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>ID #</th>
+            <th>Nome</th>
+          </tr>
+        </thead>
+        <tfoot>
+            <th>ID #</th>
+            <th>Nome</th>
+        </tfoot>
+        <tbody>
+          {% for det in object_list %}
+            <tr>
+              <td><a href="{{ lote.get_absolute_url }}">{{ det.pk }}</a></td>
+              <td> {{ det.nome }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <a class="btn btn-primary" href="">Novo</a>
+    </div>
+  </div>
+{% endblock %}

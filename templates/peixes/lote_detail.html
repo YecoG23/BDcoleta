@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ lote.id }}{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1>Lote</h1>
+      </div>
+
+      <dl class="dl-horizontal">
+        <dt><strong>LIC #</strong></dt>
+        <dd>{{ lote.id }}</dd>
+        <dt><strong>N° Exemplares:</strong></dt>
+        <dd>{{ lote.numero_exemplares }}</dd>
+        <dt><strong>Determinador:</strong></dt>
+        <dd>{{ lote.determinadores }}</dd>
+        <dt><strong>Coletor:</strong></dt>
+        <dd>{{ lote.coletores }}</dd>
+        <dt><strong>Tecido:</strong></dt>
+        <dd>{{ lote.tecidos }}</dd>
+      </dl>
+
+      <a class="btn btn-default" href="{% url 'list_lotes' %}">Voltar</a>
+      <a class="btn btn-default" href="{% url 'edit_lote' lote.id %}">Editar</a>
+      <a class="btn btn-danger" data-method="delete" href="{% url 'delete_lote' lote.id %}">Apagar</a>
+    </div>
+  </div>
+{% endblock %}

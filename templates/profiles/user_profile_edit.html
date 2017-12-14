@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}<!-- start: content block -->
+
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+
+    <h1>Edit User &dash; {{ form.instance }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+            <legend>Edit Profile Information</legend>
+            {{ user_form.as_p }}
+            {{profile_form.as_p}}
+            <button type="submit" class="btn">Submit</button>
+        
+    </form>
+{% endblock %}
+
+{% block select_projeto %}
+<!-- <script type="text/javascript">
+jQuery(document).ready(function(){
+       jQuery("#id_projeto").select2();
+   });
+</script> -->
+{% endblock select_projeto%}
+
+<!-- end: content block -->

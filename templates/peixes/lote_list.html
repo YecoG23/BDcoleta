@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Lotes{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="page-header">
+        <h1>Lista de lotes - <small>registrados para {{request.user}} </small></h1>
+      </div>
+      
+      {% if not object_list and perms.peixes.add_lote %}
+        <p><strong>Não há nenhum lote registrado.</strong> Crie <a href="{% url 'new_lote' %}"> um agora?</a>
+      {% endif %}
+
+      <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>LIC #</th>
+            <th># Exemplares</th>
+            <th>Determinação</th>
+            <th>Coletor</th>
+            <th>Tecidos</th>
+            <th>Data</th>
+            <th>Projeto</th>
+            <th>Publico</th>
+            {% if request.user.is_superuser %}
+            <th>Dono</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tfoot>
+            <th>LIC #</th>
+            <th># Exemplares</th>
+            <th>Determinação</th>
+            <th>Coletor</th>
+            <th>Tecidos</th>
+            <th>Data</th>
+            <th>Projeto</th>
+            <th>Publico</th>
+            {% if request.user.is_superuser %}
+            <th>Dono</th>
+            {% endif %}
+        </tfoot>
+        <tbody>
+          {% for lote in object_list %}
+            {% if request.user.is_superuser %}
+              <tr>
+                <td><a href="{{ lote.get_absolute_url }}">{{ lote.pk }}</a></td>
+                <td> {{ lote.numero_exemplares }}</td>
+                <td>{% for det in lote.determinadores.all %}
+                      {{ det.nome }},
+                    {% endfor %}
+                </td>
+                <td>{% for col in lote.coletores.all %}
+                      {{ col.nome }},
+                    {% endfor %}
+                </td>
+                <td>{% for tec in tecidos %}
+                      {% if tec.lote.id == lote.pk %}
+                        {{ tec.especie }},
+                      {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ lote.data_coleta }}</td>
+                <td>
+                    {{lote.projeto}}
+                </td>
+                <td>{{ lote.publico }}</td> 
+                <td>{{ lote.createdby }}</td>
+              </tr>
+            {% else %}
+                {% if lote.createdby == request.user or lote.publico %}
+                    <tr>
+                      <td><a href="{{ lote.get_absolute_url }}">{{ lote.pk }}</a></td>
+                      <td> {{ lote.numero_exemplares }}</td>
+                      <td>{% for det in lote.determinadores.all %}
+                            {{ det.nome }},
+                          {% endfor %}
+                      </td>
+                      <td>{% for col in lote.coletores.all %}
+                            {{ col.nome }},
+                          {% endfor %}
+                      </td>
+                      <td>{% for tec in tecidos %}
+                            {% if tec.lote.id == lote.pk %}
+                              {{ tec.especie }},
+                            {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td>{{ lote.data_coleta }}</td>
+                      <td>
+                          {{lote.projeto}}
+                      </td>
+                      <td>{{ lote.publico }}</td> 
+                    </tr>
+                {% endif %}
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <a class="btn btn-primary" href="{% url 'list_lotes_export' %}">Exportar como CSV</a>
+    </div>
+  </div>
+{% endblock %}
+
+<!-- {% block js_data_tables %}
+<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
+{% endblock js_data_tables %} -->
