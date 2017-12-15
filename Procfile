@@ -1,1 +1,1 @@
-web: gunicorn --log-file BDColeta/wsgi.py
+web: gunicorn --log-file BDColeta.wsgi.py
