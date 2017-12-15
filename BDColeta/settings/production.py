@@ -13,9 +13,7 @@ ALLOWED_HOSTS = ['bdcoleta.herokuappp.com','bdcoleta.com']
 
 # Configure the production database using dj_database_url
 import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config()
-}
+DATABASES['default'].update(db_from_env)
 
 
 # Address of RedisToGo instance
