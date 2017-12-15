@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'BDColeta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'BDColeta_v8',
+        'NAME': 'BDColeta_v7',
         'USER': 'postgres',
         'PASSWORD': 'yecopostgresql23',
         'CONN_MAX_AGE': 60,
@@ -162,7 +162,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 #GOOGLE API KEY FOR GOOGLE MAPS
 
-GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAbD6RLKgEI_Vk0BzhEcZ3USq4pN3_nPak'
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAXuFEZiRgdgL3G8InALlWbXru8Ty-chkQ'
 
 GEOPOSITION_MAP_OPTIONS = {
     'minZoom': 3,
