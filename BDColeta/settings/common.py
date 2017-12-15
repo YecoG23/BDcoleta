@@ -104,9 +104,9 @@ WSGI_APPLICATION = 'BDColeta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd4ikribopldal4',
-        'USER': 'osjetnnooafpeo',
-        'PASSWORD': 'd419fc7cf23a3823994b154b599251fa16403018551c6a61256c7f8851579205',
+        'NAME': 'BDColeta_v7',
+        'USER': 'postgres',
+        'PASSWORD': 'yecopostgresql',
         'CONN_MAX_AGE': 60,
         'HOST': 'localhost',
         'PORT': '',
