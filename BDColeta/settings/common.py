@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '86u#+a)d=r%1g-*@lk3d=%m5($+9wz@le(c@c*7j&7$cz3dic7'
+SECRET_KEY = os.enviro.get('SECRET_KEY','86u#+a)d=r%1g-*@lk3d=%m5($+9wz@le(c@c*7j&7$cz3dic7')
 
 # Most important settings
 
@@ -153,7 +153,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'BDColeta@gmail.com'
-EMAIL_HOST_PASSWORD = 'yecobdcoleta'
+EMAIL_HOST_PASSWORD = os.enviro.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'BDColeta Admin'
 
