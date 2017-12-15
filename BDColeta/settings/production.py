@@ -6,6 +6,8 @@ Production settings
 
 from .common import *
 
+DEBUG = False
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Allow all hosts, so we can run on PaaS's like Heroku
