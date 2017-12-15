@@ -1,1 +1,1 @@
-web: gunicorn BDColeta_v18.wsgi
+web: gunicorn BDColeta.wsgi
