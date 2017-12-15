@@ -1,6 +1,7 @@
 BDColeta/settings/local.py
 
 local.py
+*/common.py
 
 ".py[cod]" 
 .py[cod]

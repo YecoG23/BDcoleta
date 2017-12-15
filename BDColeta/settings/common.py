@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'BDColeta_v7',
         'USER': 'postgres',
-        'PASSWORD': 'yecopostgresql',
+        'PASSWORD': 'yecopostgresql23',
         'CONN_MAX_AGE': 60,
         'HOST': 'localhost',
         'PORT': '',
@@ -162,7 +162,11 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 #GOOGLE API KEY FOR GOOGLE MAPS
 
+<<<<<<< HEAD
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyATrVLDGdOGYdKaOGzKi0j8vjNPZaH28ms'
+=======
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAXuFEZiRgdgL3G8InALlWbXru8Ty-chkQ'
+>>>>>>> a04a8a26e86908525c035dad5d3495815a086a55
 
 GEOPOSITION_MAP_OPTIONS = {
     'minZoom': 3,
