@@ -63,7 +63,10 @@ class ProjetoForm(ModelForm):
 		fields = ['nome','descrição','curador']
 		widgets = {
 			'descrição': Textarea(attrs = {'placeholder':'Descrição do projeto aqui'}),
-			'curador': Select(choices = list(User.objects.filter(groups__name='Curador').values_list('id','username'))),
+
+			#'curador': Select(choices = list(User.objects.filter(groups__name='Curador').values_list('id','username'))),
+			
+
 			# 'curador': User.objects.filter(groups__name='Curador')[0].username ,
 			# 'curador': Select(choices = list_curador),
 			#'curador': ChoiceField(queryset =User.objects.filter(groups__name='Curador') ),
@@ -76,7 +79,10 @@ class ProfileForm(ModelForm):
 		model = Profile
 		fields = ['projeto']
 		widgets = {
-			'projeto': SelectMultiple(choices = list(Projeto.objects.all().values_list('id','nome'))),
+
+			#'projeto': SelectMultiple(choices = list(Projeto.objects.all().values_list('id','nome'))),
+			
+
 			# 'projeto': SelectMultiple(choices = list_projetos),
 		}
 
