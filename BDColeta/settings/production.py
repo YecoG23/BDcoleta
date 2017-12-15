@@ -9,7 +9,7 @@ from .common import *
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # Allow all hosts, so we can run on PaaS's like Heroku
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['bdcoleta.herokuappp.com','bdcoleta.com']
 
 # Configure the production database using dj_database_url
 import dj_database_url
@@ -21,7 +21,7 @@ DATABASES = {
 # Address of RedisToGo instance
 BROKER_URL = os.environ.get('REDISTOGO_URL')
 
-#GO LIVE SETTINGS
+#GO LIVE SETTINGS 
 CORS_REPLACE_HTTPS_REFERER = True
 HOST_SCHEME = "http://"
 SECURE_PROXY_SSL_HEADER = None
