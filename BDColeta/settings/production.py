@@ -16,6 +16,7 @@ ALLOWED_HOSTS = ['bdcoleta.herokuapp.com','bdcoleta.com']
 # Configure the production database using dj_database_url
 import dj_database_url
 db_from_env = dj_database_url.config()
+#ESTO ES UNA PRUEBA
 DATABASES['default'].update(db_from_env)
 
 
