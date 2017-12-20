@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'BDColeta_v7',
         'USER': 'postgres',
-        'PASSWORD': 'yecopostgresql',
+        'PASSWORD': 'yecopostgresql23',
         'CONN_MAX_AGE': 60,
         'HOST': 'localhost',
         'PORT': '',
