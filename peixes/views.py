@@ -22,7 +22,7 @@ from django.db import transaction
 
 #from .forms import CreateLoteForm
 
-from .models import Lote, Determinação, Coletor, Tecido, Projeto
+from .models import Lote, Determinação, Coletor, Tecido, Projeto, Profile
 from django.contrib.auth.models import User
 
 #Exportacao
@@ -93,9 +93,12 @@ class LoteListView( ListView):
         context['tecidos'] = tecidos
         return context
 
-class LoteDetailView(DetailView):
+class LoteDetailView(PermissionRequiredMixin, DetailView):
     """Shows users a single appointment"""
     model = Lote
+    permission_required = ('can_view_lote')
+    raise_exception = True
+    permission_denied_message = 'Caro amigo(a) ,não tem permissão para acessar ao lote!'
 
 
 class LoteCreateView(CreatePopupMixin, SuccessMessageMixin, CreateView):
@@ -291,13 +294,34 @@ class ProjetoCreateView(PRMDefault,SuccessMessageMixin, CreateView):
     success_message = 'Projeto criado com sucesso.'
     permission_required = 'peixes.add_projeto'
     raise_exception = True
-    permission_denied_message = 'Voce nao tem permissao para acessar!'
+    permission_denied_message = 'Voce não tem permissão para acessar!'
 
     def form_valid(self, form):
         current_curador = User.objects.get(groups__name='Curador')
-        print(current_curador)
         form.instance.curador = current_curador
-        return super(ProjetoCreateView, self).form_valid(form)
+        resp = super(ProjetoCreateView, self).form_valid(form)
+        #GET THE PROFILE OF CURATOR
+        curador_profile = Profile.objects.get(user__id=current_curador.id)
+        print(curador_profile)
+        print(self.request.user)
+        print(type(self.request.user))
+        #GET THE CURRENT USER
+        current_user = User.objects.get(id=self.request.user.id)
+        #GET THE CURRENT PROFILE AND ADD
+        current_profile = Profile.objects.get(user=current_user)
+        current_profile.projeto.add(self.object)
+        print(current_profile)
+        #ADD PROJECT TO CURRENT PROFILE TO ADMIN AS WELL
+        current_profile.projeto.add(self.object)
+        if not current_user.is_superuser:
+            admin_user = User.objects.get(is_superuser=True)
+            admin_profile = Profile.objects.get(user=admin_user)
+            admin_profile.projeto.add(self.object)
+            
+        #ADD PROJECT TO CURRENT CURATOR
+        curador_profile.projeto.add(self.object)
+        print(self.object)
+        return resp
         
 ##EXPORTACAO
 
