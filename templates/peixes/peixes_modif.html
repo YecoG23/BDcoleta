@@ -3,7 +3,7 @@
 
 {% block title %}DashBoard Peixes{% endblock title %}
 
-{% block styles %}
+{% block styles_leftsidebar %}
   <link href="{% static 'css/sidebarYosh_modif.css' %}" rel="stylesheet">
   <style type='text/css'>
     .navbar {
@@ -48,7 +48,7 @@
             {% if num_projetos %}    
             <h3 class="page-header">Projeto Atual: 
               <small>
-                <select> 
+                <select class="projetoss"> 
                 {% for pro in projetos%}
                   <option value="{{pro.id}}">{{pro.nome}}</option>
                 {% endfor %}
@@ -76,11 +76,27 @@
               <h3 class="page-header">Integrantes do Projeto</h3>
             </div>
             <div class="row">
-              STUFF
-            <div class="pull-right">
-              <a href=""><button type="button" class="btn btn-success">Visualizar</button></a>
+              <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Autorização</th>
+                                            <th>Stuff</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody  id="result">
+                                     {% for int in integrantes %}
+                                        <tr>
+                                            <td>{{int.user.username}}</td>
+                                            <td>{{int.Autorização}}</td>
+                                            <td>Wi</td>
+                                        </tr> 
+                                      {% endfor %}
+                                    </tbody>
+                                </table>
+              </div>
             </div>
-
               <div class="row">
                 <h3 class="page-header">Petições</h3>
               </div>
@@ -89,6 +105,7 @@
               <div class="pull-right">
                 <a href=""><button type="button" class="btn btn-success">Visualizar</button></a>
               </div>
+            </div>
               
             
           </div>
@@ -104,12 +121,43 @@
       
       
 </div>
-    
+<script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+<script>
+  $(document).ready(function () {
+      $('.projetoss').on('change', function (e) {
+      var slug = $(".projetoss").val();
+      console.log(slug);
+      var url_mask = "{% url 'update_consulta_integrantes' slug=12345 %}".replace(/12345/, slug.toString());
+      $.ajax({
+        url: url_mask,
+        dataType: 'json',
+        success: function (data) {
+          var consulta = data.new_consulta;
+          var users = data.users;
+          console.log(consulta);
+          console.log(users);
+          $( "#result" ).empty();
+          $.each(consulta, function(index, value){
+            for(var i = 0; i<users.length;i++){
+              if (users[i][0]==value[0]){
+                $("#result").append('<tr><td>'+ users[i][1] +'</td><td>'+ value[1] +'</td></tr>');
+              }
+            }
+            
+            // console.log(value.id_user);
+          });
+        }
+
+      });
+
+      });
+      
+  });
+  </script>
+
 {% endblock %}
 
 {% block js_sidebar %}
-
-
 <script type="text/javascript">
   $("#menu-toggle").click(function(e) {
         e.preventDefault();

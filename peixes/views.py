@@ -67,16 +67,18 @@ class PeixesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PeixesView, self).get_context_data(**kwargs)
         if Projeto.objects.exists():
-            projetos_per_user = Projeto.objects.filter(profile__user__username=self.request.user.username)
+            projetos_per_user = Projeto.objects.filter(profile__user__username=self.request.user.username).order_by('-id')
             print(projetos_per_user)
             num_projetos = projetos_per_user.count()
             print(num_projetos)
             curador_peixes = User.objects.get(groups__name='Curador')
             # list_integrantes = Projeto.objects.get(id=2).usuario
+            last_projeto  = Projeto.objects.latest('id')
+            list_integrantes = Profile.objects.filter(projeto=last_projeto)
             context['num_projetos'] = num_projetos
             context['projetos'] = projetos_per_user
             context['curador'] = curador_peixes
-            # context['list_integrantes'] = list_integrantes
+            context['integrantes'] = list_integrantes
         return context
 
 class LoteListView( ListView):
@@ -274,7 +276,22 @@ def update_consulta(request):
     }
     return JsonResponse(data)
 
+def update_consulta_integrantes(request, slug):
+    print(slug)
+    # new_list = []
+    # all_users=list(User.objects.all().values_list('id','username'))
+    # profile_users=list(Profile.objects.filter(projeto=Projeto.objects.get(id=slug)).values_list('user','Autorização'))
+    # if profile_users:
+    #     for p in profile_users:
+    #         for a in all_users:
+    #             if p[0] in a:
+    #                 p[1] = a[1]
 
+    data = {
+        'new_consulta': list(Profile.objects.filter(projeto=Projeto.objects.get(id=slug)).values_list('user','Autorização')),
+        'users': list(User.objects.all().values_list('id','username'))
+    }
+    return JsonResponse(data)
 
 #REGISTRATION VIEWS
 # def RegistrationViewBD(RegistrationView):

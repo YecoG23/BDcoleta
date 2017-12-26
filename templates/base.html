@@ -20,7 +20,7 @@
     <link href="{% static 'carousel.css' %}" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet"> -->
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{% static 'assets/css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
@@ -43,13 +43,13 @@
     <!-- CSS -->
     {% bootstrap_css %}
 
-    {% block page_css %}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    {% block page_css_datepicker %}
+    
     {% endblock %}
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
 
-    {% block styles %}
+    {% block styles_leftsidebar %}
     {% endblock %}
 
     
@@ -182,14 +182,7 @@
   {% endif %}
 
     <div class="container">
-      {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          {{ message }}
-        </div>
-        {% endfor %}
-      {% endif %}  
+      {% bootstrap_messages %} 
 
       {% block content %}
       {% endblock content %}
@@ -201,18 +194,16 @@
     </div> <!-- /container -->
 
     <!-- JavaScript -->
-    {% bootstrap_javascript jquery=1 %}
-    {% block page_js %}
+    {% bootstrap_javascript jquery=1 %} <!-- TO ENABLE FUNCTIONATILY ABOUT THE MESSAGES -->
+
+    {% block page_js_datepicker %}
 
     {% endblock %}
-    
-    {% block select_projeto %}
 
-    {% endblock %}
-    
+<!--     JAVASCRIPT NECESSARY TO ENABLE THE LEFT SIDEBAR -->    
     {% block js_sidebar %}
-
     {% endblock %}
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -236,7 +227,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <!-- <script src="{% static 'dist/js/bootstrap.min.js' %}"></script> -->
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->

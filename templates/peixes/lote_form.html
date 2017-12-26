@@ -98,24 +98,14 @@
     </div>
   </div>
 <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-<!-- <script type="text/javascript">
-    $(document).ready(function () {
-        $('#id_btn_submit_lote').click(function () {
-            window.opener.document.getElementById("id_especie").innerHTML = 'Hola';
-        });
-    });
-</script> -->
-
-
-
 {{ form.media }}
 {% endblock %}
 
-{% block page_css %}
+{% block page_css_datepicker %}
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" />
 {% endblock %}
 
-{% block page_js %}
+{% block page_js_datepicker %}
   <script type="text/javascript">
       $(function() {
           $('#id_data_coleta').datetimepicker({
@@ -129,27 +119,6 @@
           });
       });
   </script>
-
-<!-- <script type="text/javascript">
-var data = {{projetos |js}};
-
-    $(".select form-control").select2({
-      data: data
-    })
-
-</script> -->
-<!-- <script>
-$(document).ready(function(){
-    $( '#id_tooltip' ).click(function( event ) {
-      event.preventDefault();
-    });
-    $('[data-toggle="tooltip"]').tooltip();   
-    });
-</script> -->
-
-  <!-- <script type="text/javascript">
-  $(".js-example-basic-multiple").select2();
-  </script> -->
 {% endblock %}
 
 

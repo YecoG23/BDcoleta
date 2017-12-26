@@ -3,7 +3,7 @@
 
 {% block title %}Coleção Peixes{% endblock title %}
 
-{% block styles %}
+{% block styles_leftsidebar %}
   <link href="{% static 'css/sidebarYosh_modif.css' %}" rel="stylesheet">
   <style type='text/css'>
     .navbar {
@@ -52,10 +52,18 @@
                           <div class="panel panel-primary">
                               <div class="panel-heading">
                                   Projeto #{{proj.id}} : {{proj.nome}}
+
                               </div>
                               <div class="panel-body">
                                   <p>{{proj.descrição}}</p>
                               </div>
+                              <a href="#">
+                                  <div class="panel-footer">
+                                      <span class="pull-left">Solicitar acesso!</span>
+                                      <span class="pull-right"><i class="fa-chevron-right"></i></span>
+                                      <div class="clearfix"></div>
+                                  </div>
+                              </a>
                           </div>
               </div>
               {% endfor %}

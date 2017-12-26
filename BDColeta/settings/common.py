@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY','86u#+a)d=r%1g-*@lk3d=%m5($+9wz@le(c@c*7j&7$cz3dic7')
@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'BDColeta_v7',
         'USER': 'postgres',
-        'PASSWORD': 'yecopostgresql23',
+        'PASSWORD': 'yecopostgresql',
         'CONN_MAX_AGE': 60,
         'HOST': 'localhost',
         'PORT': '',

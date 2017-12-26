@@ -5,7 +5,7 @@
 
 {% block title %}Coleção Peixes{% endblock title %}
 
-{% block styles %}
+{% block styles_leftsidebar %}
   <link href="{% static 'css/sidebarYosh_modif.css' %}" rel="stylesheet">
   <style type='text/css'>
     .navbar {
@@ -75,8 +75,6 @@
 {% endblock %}
 
 {% block js_sidebar %}
-
-
 <script type="text/javascript">
   $("#menu-toggle").click(function(e) {
         e.preventDefault();
