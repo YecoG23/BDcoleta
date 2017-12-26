@@ -37,7 +37,7 @@ class Projeto(models.Model):
 class Profile(models.Model):
     """docstring for Profile"""
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    projeto = models.ManyToManyField(Projeto)
+    projeto = models.ManyToManyField(Projeto, blank=True)
     Autorização = models.CharField(max_length=30, blank=True)
     
     def __str__(self):
