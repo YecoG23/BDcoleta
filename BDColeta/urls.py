@@ -12,4 +12,5 @@ urlpatterns = [
 ]
 urlpatterns += [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    # url(r'^messages/', include('django_messages.urls')),
 ]

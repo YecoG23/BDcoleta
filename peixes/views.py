@@ -303,6 +303,13 @@ class ProjetoListView(ListView):
     model = Projeto
     template_name ='peixes/peixes_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProjetoListView, self).get_context_data(**kwargs)
+        if Projeto.objects.exists():
+            projetos_per_user = Projeto.objects.filter(profile__user__username=self.request.user.username).values_list('id', flat=True)
+            context['projetos_per_user'] = projetos_per_user
+        return context
+
 class ProjetoCreateView(PRMDefault,SuccessMessageMixin, CreateView):
 
     model = Projeto
