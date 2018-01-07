@@ -12,5 +12,5 @@ urlpatterns = [
 ]
 urlpatterns += [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
-    # url(r'^messages/', include('django_messages.urls')),
+    url(r"^messages/", include("pinax.messages.urls", namespace="pinax_messages")),
 ]
