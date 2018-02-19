@@ -18,7 +18,7 @@ from .views import (
     )
 from .views import ProjetoListView, PeixesView, ProjetoCreateView
 from .views import DeterminadorListView, ColetorListView, TecidoListView
-from .views import Export_CSV_Loteview, Export_CSV_Tecidoview
+from .views import Export_CSV_Loteview, Export_CSV_Tecidoview, simple_upload
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import update_consulta, update_consulta_integrantes
@@ -30,10 +30,11 @@ urlpatterns = [
     url(r"^user/settings/profile/(?P<slug>[\w-]+)/$", uptade_profile, name='edit_profile'),
 
     #LOTE
-    # List,detail and export views
+    # List,detail and export, import views
     url(r'^lote/lista$', LoteListView.as_view(), name='list_lotes'),
     url(r'^lote/lista/export$', Export_CSV_Loteview , name='list_lotes_export'),
     url(r'^lote/(?P<pk>[0-9]+)/detail$', LoteDetailView.as_view(), name='view_lote'),
+    url(r'^lote/import$', simple_upload , name='lotes_import'),
 
     # Create, update, delete lote
     url(r'^lote/add$', LoteCreateView.as_view(), name='new_lote'),
@@ -79,6 +80,8 @@ urlpatterns = [
     #PROJETOS
     url(r'^lista$', ProjetoListView.as_view(), name='list_projetos'),
     url(r'^projeto/add$', ProjetoCreateView.as_view(), name='new_projeto'),
+
+
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -35,8 +35,13 @@ from guardian.mixins import PermissionRequiredMixin
 
 #IMPORT AND EXPORT
 from .resources import LoteResource, TecidoResource
+from tablib import Dataset #needed to import data
 
 from django.shortcuts import get_object_or_404
+
+
+
+
 
 @login_required
 @transaction.atomic
@@ -363,3 +368,19 @@ def Export_CSV_Tecidoview(request):
     response = HttpResponse(dataset.csv, content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="tecido.csv"'
     return response
+
+##IMPORTACAO
+
+def simple_upload(request):
+    if request.method == 'POST':
+        lote_resource = LoteResource()
+        dataset = Dataset()
+        new_lotes = request.FILES['myfile']
+
+        imported_data = dataset.load(new_lotes.read().decode('utf-8'))
+        result = lote_resource.import_data(dataset, dry_run=True)  # Test the data import
+
+        if not result.has_errors():
+            lote_resource.import_data(dataset, dry_run=False)  # Actually import now
+
+    return render(request, 'simple_upload.html')
