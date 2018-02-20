@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
 
+{% block title %}Importação de dados{% endblock %}
+
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
+<div class="row">
+<div class='col-sm-6 col-sm-offset-3'>
+<div class="page-header">
+  <h1>
+  	Carrega
+  </h1>
+</div>
+<form method="post" enctype="multipart/form-data" class="form-horizontal">
     {% csrf_token %}
-    <input type="file" name="myfile">
-    <button type="submit">Upload</button>
+    <!-- <input type="file" name="myfile"> -->
+    <input id="input-b1" name="myfile" type="file" class="file">
+    <br>
+    <button type="submit" class="btn btn-primary"> Carga <span class="sub_icon glyphicon glyphicon-upload"></span></button>
   </form>
+</div>
+</form>
+</div>
+</div>
 {% endblock %}
+

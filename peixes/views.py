@@ -379,8 +379,13 @@ def simple_upload(request):
 
         imported_data = dataset.load(new_lotes.read().decode('utf-8'))
         result = lote_resource.import_data(dataset, dry_run=True)  # Test the data import
+        print(result)
 
-        if not result.has_errors():
+        if result.has_errors():
+            print("Error")
+            messages.error(request, ('Por favor corriga os erros'))
+        else:
+            messages.success(request, ('O arquivo foi carregado com sucesso!'))
             lote_resource.import_data(dataset, dry_run=False)  # Actually import now
 
     return render(request, 'simple_upload.html')
