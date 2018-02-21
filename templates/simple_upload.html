@@ -7,7 +7,7 @@
 {% for line, errors in result.row_errors %}
         {% for error in errors %}
           <li>
-            Linha numero: {{ line }} - {{ error.error }}
+            Linha numero: {{ line }} - <b>{{ error.error }}</b>
             <div>{{ error.row }}</div>
             <!-- <div class="traceback">{{ error.traceback|linebreaks }}</div> -->
         {% endfor %}

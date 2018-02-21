@@ -383,11 +383,12 @@ def simple_upload(request):
         # print(result.error)
 
         if result.has_errors():
-            messages.error(request, ('Por favor corriga os()) erro(s)'))
+            messages.error(request, ('Por favor corriga o(s)) erro(s)'))
         else:
             messages.success(request, ('O arquivo foi carregado com sucesso!'))
             lote_resource.import_data(dataset, dry_run=False,raise_errors=False)  # Actually import now
 
-    return render(request, 'simple_upload.html', {
-        'result':result
-        })
+        return render(request, 'simple_upload.html', {
+            'result':result
+            })
+    return render(request, 'simple_upload.html')
