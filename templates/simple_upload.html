@@ -3,6 +3,17 @@
 {% block title %}Importação de dados{% endblock %}
 
 {% block content %}
+
+{% for line, errors in result.row_errors %}
+        {% for error in errors %}
+          <li>
+            Linha numero: {{ line }} - {{ error.error }}
+            <div>{{ error.row }}</div>
+            <!-- <div class="traceback">{{ error.traceback|linebreaks }}</div> -->
+        {% endfor %}
+
+{% endfor %}
+
 <div class="row">
 <div class='col-sm-6 col-sm-offset-3'>
 <div class="page-header">
