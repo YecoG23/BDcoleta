@@ -95,26 +95,6 @@
             SelectBox.add_to_cache(toId, o);
             SelectBox.redisplay(toId);
         }
-        $(win).unload(
-        $.ajax({
-        url: '/peixes/ajax/update_consulta/',
-        dataType: 'json',
-        success: function (data) {
-          var consulta = data.new_consulta;
-          var findit = false;
-          for(var i =0; i<consulta.length;i++){   
-               if($('#id_lote').val()==consulta[i][0])
-               {
-                    $('#id_especie').val(consulta[i][1]);
-                    findit = true;
-               }
-               }
-                if(!findit){
-                    $('#id_especie').val('');
-                }
-        }
-      })
-        )
         win.close();
     }
 
@@ -128,26 +108,6 @@
                 this.value = newId;
             }
         });
-        $(win).unload(
-        $.ajax({
-        url: '/peixes/ajax/update_consulta/',
-        dataType: 'json',
-        success: function (data) {
-          var consulta = data.new_consulta;
-          var findit = false;
-          for(var i =0; i<consulta.length;i++){   
-               if($('#id_lote').val()==consulta[i][0])
-               {
-                    $('#id_especie').val(consulta[i][1]);
-                    findit = true;
-               }
-               }
-                if(!findit){
-                    $('#id_especie').val('');
-                }
-        }
-      })
-        )
         win.close();
     }
 
