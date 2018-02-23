@@ -107,6 +107,12 @@ class LoteDetailView(PermissionRequiredMixin, DetailView):
     raise_exception = True
     permission_denied_message = 'Caro amigo(a) ,não tem permissão para acessar ao lote!'
 
+    def get_context_data(self, **kwargs):
+        context = super(LoteDetailView, self).get_context_data(**kwargs)
+        tecidos = Tecido.objects.all()
+        context['tecidos'] = tecidos
+        return context
+
 
 class LoteCreateView(CreatePopupMixin, SuccessMessageMixin, CreateView):
     """Powers a form to create a new appointment"""

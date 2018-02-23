@@ -10,16 +10,88 @@
       </div>
 
       <dl class="dl-horizontal">
+        <h4>Dados gerais</h4>
+
         <dt><strong>LIC #</strong></dt>
-        <dd>{{ lote.id }}</dd>
+          <dd>{{ lote.id }}</dd>
+
         <dt><strong>N° Exemplares:</strong></dt>
-        <dd>{{ lote.numero_exemplares }}</dd>
-        <dt><strong>Determinador:</strong></dt>
-        <dd>{{ lote.determinadores }}</dd>
-        <dt><strong>Coletor:</strong></dt>
-        <dd>{{ lote.coletores }}</dd>
-        <dt><strong>Tecido:</strong></dt>
-        <dd>{{ lote.tecidos }}</dd>
+          <dd>{{ lote.numero_exemplares }}</dd>
+
+        <dt><strong>Determinador(es):</strong></dt>
+          <dd>
+              {% for det in lote.determinadores.all %}
+                  {{ det.nome }},
+              {% endfor %}          
+          </dd>
+
+        <dt><strong>Coletor(es):</strong></dt>
+          <dd>
+              {% for col in lote.coletores.all %}
+                  {{ col.nome }},
+              {% endfor %}          
+          </dd>
+
+        <dt><strong>Tecido(s):</strong></dt>
+          <dd>
+              {% for tec in tecidos %}
+                    {% if tec.lote.id == lote.pk %}
+                        {{ tec.especie }},
+                    {% endif %}
+              {% endfor %}        
+          </dd>
+        <h4>Clasificação Taxonomica</h4>
+
+        <dt><strong>Reino:</strong></dt>
+          <dd>{{ lote.reino }}</dd>
+
+        <dt><strong>Filo:</strong></dt>
+          <dd>{{ lote.filo }}</dd>
+
+        <dt><strong>Classe:</strong></dt>
+          <dd>{{ lote.classe }}</dd>
+
+         <dt><strong>Ordem:</strong></dt>
+          <dd>{{ lote.ordem }}</dd>
+
+        <dt><strong>Familia:</strong></dt>
+          <dd>{{ lote.familia }}</dd>
+
+        <dt><strong>Sub Familia:</strong></dt>
+          <dd>{{ lote.sub_familia }}</dd>
+
+        <dt><strong>Genero:</strong></dt>
+          <dd>{{ lote.genero }}</dd>
+
+        <dt><strong>Especie:</strong></dt>
+          <dd>{{ lote.especie }}</dd>
+
+        <h4>Dados geograficos</h4>
+
+        <dt><strong>Pais:</strong></dt>
+          <dd>{{ lote.pais }}</dd>
+
+        <dt><strong>Municipio:</strong></dt>
+          <dd>{{ lote.municipio }}</dd>
+
+        <dt><strong>Estado:</strong></dt>
+          <dd>{{ lote.estado }}</dd>
+
+        <dt><strong>Nome do Rio:</strong></dt>
+          <dd>{{ lote.nome_rio }}</dd>
+
+        <dt><strong>Bacia hidrografica:</strong></dt>
+          <dd>{{ lote.bacia_hidrografica }}</dd>
+
+        <dt><strong>Sub bacia hidrografica:</strong></dt>
+          <dd>{{ lote.subbacia_hidrografica }}</dd>
+
+        <dt><strong>Data da coleta:</strong></dt>
+          <dd>{{ lote.data_coleta }}</dd>
+
+        <dt><strong>Posição:</strong></dt>
+          <dd><abbr title="Latitude">Lat: {{ lote.position.latitude }}</abbr></dd>
+          <dd><abbr title="Longitude">Lon: {{ lote.position.longitude }}</abbr></dd>
       </dl>
 
       <a class="btn btn-default" href="{% url 'list_lotes' %}">Voltar</a>
