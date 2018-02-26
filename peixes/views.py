@@ -298,9 +298,32 @@ def update_consulta_integrantes(request, slug):
     #             if p[0] in a:
     #                 p[1] = a[1]
 
+
+    # usersProject =
+
+    # xd.append(list(User.objects.filter(id=i).values_list('id','groups')))
+
+    #USERS OF DETERMINATE PROJECT
+    usersThisProject = list(Profile.objects.filter(projeto=Projeto.objects.get(id=slug)).values_list('user',flat=True))
+
+    #NEED USERS_ID AND USERNAMES
+    usersIdUsername = []
+
+    for i in usersThisProject:
+       usersIdUsername.append(list(User.objects.filter(id=i).values_list('id','username'))) 
+    
+
+    #NEED USERS_ID AND GROUPS
+    usersGroups =[]
+
+    for i in usersThisProject:
+       usersGroups.append(list(User.objects.filter(id=i).values_list('id','groups')))
+    
+
+
     data = {
-        'new_consulta': list(Profile.objects.filter(projeto=Projeto.objects.get(id=slug)).values_list('user','Autorização')),
-        'users': list(User.objects.all().values_list('id','username'))
+        'users': usersIdUsername,
+        'usersGroups':usersGroups,
     }
     return JsonResponse(data)
 

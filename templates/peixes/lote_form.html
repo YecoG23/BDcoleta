@@ -6,7 +6,15 @@
 {% load crispy_forms_tags %}
 {% load js %}
 
-{% block title %}Novo Lote{% endblock title %}
+{% block title %}
+
+  {% if not object.pk %}
+            Novo Lote
+  {% else %}
+            Editar Lote
+  {% endif %}
+
+{% endblock title %}
 
 {% block content %}
 
@@ -77,10 +85,9 @@
               
              
             </div>
-            <div class="col-md-1"></div>
         </div> 
         <div class="row">
-          {{form.position | as_crispy_field}}
+          {{form.position}}
         </div>
         <div class="form-group">
           <div class="col-md-offset-4 col-sm-8">

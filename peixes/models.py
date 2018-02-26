@@ -4,10 +4,10 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from django.contrib.postgres.fields import ArrayField
+
 
 #GUARDIAN PERMISSION
 from guardian.shortcuts import assign_perm
@@ -47,6 +47,7 @@ class Profile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+        instance.groups.add(Group.objects.get(name='Convidado'))
 
 @receiver(post_save, sender = User)
 def save_user_profile(sender, instance, **kwargs):
