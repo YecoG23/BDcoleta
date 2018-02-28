@@ -11,6 +11,12 @@
     <title>{% block title %}{% endblock title %} - BD Coleção</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"  href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" href="{% static 'favicon.ico' %}"> 
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -145,7 +151,8 @@
                   <button class="btn btn-default dropdown-toggle navbar-btn" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu ">
-                    <li><a href="{% url 'edit_profile' request.user.username %}">Dados Pessoais</a></li>
+                    <!-- <li><a href="{% url 'edit_profile' request.user.username %}">Dados Pessoais</a></li> MODIFICAR PERFIL-->
+                    <li><a href="{% url 'pinax_messages:inbox' %}">Mensagens</a></li>
                     <li><a href="{% url 'auth_password_change' %}">Trocar senha</a></li>
                     <li class="divider"></li>
                     <li><a href="{% url 'auth_logout' %}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair</a></li>
@@ -170,7 +177,7 @@
       {% endblock content %}
 
       <footer align="center">
-        <p>&copy; UNILA 2017</p>
+        <p>&copy; UNILA 2018</p>
       </footer>
 
     </div> <!-- /container -->

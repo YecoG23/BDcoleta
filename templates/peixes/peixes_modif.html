@@ -64,7 +64,7 @@
                                             <td>{{int.user.username}}</td>
                                             <td>
                                                 {% for g in int.user.groups.all %}
-                                                  {{g.name}}
+                                                  {{g.name}}, 
                                                 {% endfor%}
                                             </td>
                                             <td>Wi</td>
@@ -118,39 +118,65 @@
         success: function (data) {
 
           var users = data.users;
-          var usersGroups = data.usersGroups;
-          console.log(usersGroups);
           console.log(users);
+
           $( "#result" ).empty();
-          // $.each(users, function(index, value){
-          //   $("#result").append('<tr><td>'+ users[0][1] +'</td></tr>');
-          //   for(var i = 0; i<usersGroups.length;i++){
-          //       if(users[i][0] == usersGroups[i][0] ){
-          //         $("#result").append('<tr><td>'+ usersGroups[i][1] +',</td></tr>');
-          //       }
-          //       // $("#result").append('<tr><td>'+ usersGroups[i][1] +'</td><td>'+ value[1] +'</td></tr>');
-          //   }
-            
-          //   // console.log(value.id_user);
-          // });
 
-          for(var i = 0; i<users.length;i++){
-            $("#result").append('<tr><td>'+ users[i][0][1] +'</td></tr>');
-                // $("#result").append('<tr><td>'+ usersGroups[i][1] +'</td><td>'+ value[1] +'</td></tr>');
+          for(var i = 0; i<users.length; i++){
+
+            // $("#result").append('<tr><td>'+ users[i][0][1] +'</td>');
+            $row = $('<tr><td>'+ users[i][0][1] +'</td>');
+
+            console.log('Hola')
+            console.log(users[i][0][0])
+            var slug = users[i][0][0];
+
+            var url_mask = "{% url 'update_consulta_grupos' slug=12345 %}".replace(/12345/, slug.toString());
+            $.ajax({
+              url: url_mask,
+              dataType: 'json',
+              success: function (data) {
+              var userGroups = data.userGroups;
+                
+                console.log(userGroups);
+
+                // for(var i = 0; i<userGroups.length;i++){
+                //   // if(userGroups.length == 1){
+                //   //   $("#result").append('<td>'+ userGroups[i][1] +'</td></tr>');
+                //   // }
+                //   console.log('aqui denuevo')
+
+                //   // $("#result").append('<td>'+ userGroups[i] +'</td>');
+
+                //   $row.append('<td>'+ userGroups[i] +',</td>');
+                //   //   $("#result").append('<td>'+ userGroups[i][1] +'</td>');
+                //   //   $("#result").append('<td>'+ userGroups[i][1] +'</td></tr>');
+                //   // }
+                  
+                // }
+
+                switch (userGroups.length) {
+                    case 1:
+                        $row.append('<td>'+ userGroups[0] +',</td>');
+                        break; 
+                    case 2:
+                        $row.append('<td>'+ userGroups[0] + ',' +  userGroups[1] + ',</td>');
+                }
 
 
-              // for(var i = 0; i<usersGroups.length;i++){
-              //   if(users[i][0][0] == usersGroups[i][0][0] ){
-              //     $("#result").append('<tr><td>'+ usersGroups[i][0][1] +',</td></tr>');
-              //   }
+                $row.append('</tr>');
+
+              },async: false
+
+            });  
 
 
-              //   // $("#result").append('<tr><td>'+ usersGroups[i][1] +'</td><td>'+ value[1] +'</td></tr>');
-              // }
-            }
+
+                $("#result").append($row);
 
 
-        }
+          }
+        }, async: false
 
       });
 

@@ -21,7 +21,7 @@ from .views import DeterminadorListView, ColetorListView, TecidoListView
 from .views import Export_CSV_Loteview, Export_CSV_Tecidoview, simple_upload
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import update_consulta, update_consulta_integrantes
+from .views import update_consulta, update_consulta_integrantes, update_consulta_grupos
 
 
 
@@ -75,6 +75,7 @@ urlpatterns = [
     #AJAX_CONSULTA
     url(r'^ajax/update_consulta/$', update_consulta, name='update_consulta'),
     url(r'^ajax/update_consulta_integrantes/(?P<slug>[\w\-]+)/$', update_consulta_integrantes, name='update_consulta_integrantes'),
+    url(r'^ajax/update_consulta_grupos/(?P<slug>[\w\-]+)/$', update_consulta_grupos, name='update_consulta_grupos'),
 
 
     #PROJETOS

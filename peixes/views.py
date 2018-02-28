@@ -288,23 +288,12 @@ def update_consulta(request):
     return JsonResponse(data)
 
 def update_consulta_integrantes(request, slug):
+    
     print(slug)
-    # new_list = []
-    # all_users=list(User.objects.all().values_list('id','username'))
-    # profile_users=list(Profile.objects.filter(projeto=Projeto.objects.get(id=slug)).values_list('user','Autorização'))
-    # if profile_users:
-    #     for p in profile_users:
-    #         for a in all_users:
-    #             if p[0] in a:
-    #                 p[1] = a[1]
-
-
-    # usersProject =
-
-    # xd.append(list(User.objects.filter(id=i).values_list('id','groups')))
 
     #USERS OF DETERMINATE PROJECT
     usersThisProject = list(Profile.objects.filter(projeto=Projeto.objects.get(id=slug)).values_list('user',flat=True))
+
 
     #NEED USERS_ID AND USERNAMES
     usersIdUsername = []
@@ -314,16 +303,23 @@ def update_consulta_integrantes(request, slug):
     
 
     #NEED USERS_ID AND GROUPS
-    usersGroups =[]
+    # usersGroups =[]
 
-    for i in usersThisProject:
-       usersGroups.append(list(User.objects.filter(id=i).values_list('id','groups')))
-    
-
-
+    # for i in usersThisProject:
+    #    usersGroups.append(list(User.objects.filter(id=i).values_list('id','groups'))
     data = {
         'users': usersIdUsername,
-        'usersGroups':usersGroups,
+        # 'usersGroups':usersGroups,
+    }
+    return JsonResponse(data)
+
+def update_consulta_grupos(request, slug):
+    
+    print(slug)
+
+    userGroups=list(User.objects.filter(id=slug).values_list('groups',flat=True))
+    data = {
+        'userGroups':userGroups,
     }
     return JsonResponse(data)
 
