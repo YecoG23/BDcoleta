@@ -40,7 +40,7 @@
             {% else %}
                 
             {% endif %}
-            <div class="pull-right">
+            <div class="col-md-8 col-md-offset-10">
               <a href="{% url 'list_projetos' %}"><button type="button" class="btn btn-success">Ver todos os projetos</button></a>
             </div>
           </div>
@@ -86,7 +86,7 @@
                 <!-- <a href="{% url 'pinax_messages:inbox' %}"><i class="fa fa-envelope"></i>Message Inbox</a> -->
                 
 
-              <div class="pull-right">
+              <div class="col-md-10 col-md-offset-10">
                 <a href=""><button type="button" class="btn btn-success">Visualizar</button></a>
               </div>
             </div>
@@ -137,10 +137,10 @@
             $row = $('<tr><td>'+ listUsers[i][0][1] +'</td>');
             switch(listGroups[i].length){
               case 1: 
-              $row.append('<td>' + listGroups[i][0][1]);
+              $row.append('<td>' + listGroups[i][0][1] + '</td>');
               break;
               case 2:
-              $row.append('<td>' + listGroups[i][0][1] + ' , ' + listGroups[i][1][1]);
+              $row.append('<td>' + listGroups[i][0][1] + ' , ' + listGroups[i][1][1] + '</td>');
               break;
             }
             $row.append('</tr>');
