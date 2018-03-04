@@ -23,7 +23,7 @@ from django.db import transaction
 #from .forms import CreateLoteForm
 
 from .models import Lote, Determinação, Coletor, Tecido, Projeto, Profile
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 #Exportacao
 from django.template import loader, Context
@@ -302,26 +302,20 @@ def update_consulta_integrantes(request, slug):
        usersIdUsername.append(list(User.objects.filter(id=i).values_list('id','username'))) 
     
 
-    #NEED USERS_ID AND GROUPS
-    # usersGroups =[]
+  #NEED USERS_ID AND GROUPS
+    usersGroups = []
 
-    # for i in usersThisProject:
-    #    usersGroups.append(list(User.objects.filter(id=i).values_list('id','groups'))
+    for i in usersThisProject:
+        usersGroups.append(list(Group.objects.filter(user=i).values_list('user','name')))
+
+
     data = {
         'users': usersIdUsername,
-        # 'usersGroups':usersGroups,
+        'usersGroups': usersGroups,
     }
+
     return JsonResponse(data)
 
-def update_consulta_grupos(request, slug):
-    
-    print(slug)
-
-    userGroups=list(User.objects.filter(id=slug).values_list('groups',flat=True))
-    data = {
-        'userGroups':userGroups,
-    }
-    return JsonResponse(data)
 
 #REGISTRATION VIEWS
 # def RegistrationViewBD(RegistrationView):

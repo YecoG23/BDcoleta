@@ -50,12 +50,12 @@
             </div>
             <div class="row">
               <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-striped" id="myTable">
                                     <thead>
                                         <tr>
                                             <th>Username</th>
                                             <th>Autorização</th>
-                                            <th>Stuff</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody  id="result">
@@ -67,7 +67,7 @@
                                                   {{g.name}}, 
                                                 {% endfor%}
                                             </td>
-                                            <td>Wi</td>
+                                            
                                         </tr> 
                                       {% endfor %}
                                     </tbody>
@@ -109,76 +109,48 @@
 <script>
   $(document).ready(function () {
       $('.projetoss').on('change', function (e) {
+
+      //cleaning the table to fill up with new data
+      $( "#result" ).empty();
+
       var slug = $(".projetoss").val();
-      console.log(slug);
+      // console.log(slug);
       var url_mask = "{% url 'update_consulta_integrantes' slug=12345 %}".replace(/12345/, slug.toString());
+      
       $.ajax({
         url: url_mask,
         dataType: 'json',
         success: function (data) {
-
-          var users = data.users;
+          users = data.users;
+          usersGroups = data.usersGroups;
           console.log(users);
-
-          $( "#result" ).empty();
-
-          for(var i = 0; i<users.length; i++){
-
-            // $("#result").append('<tr><td>'+ users[i][0][1] +'</td>');
-            $row = $('<tr><td>'+ users[i][0][1] +'</td>');
-
-            console.log('Hola')
-            console.log(users[i][0][0])
-            var slug = users[i][0][0];
-
-            var url_mask = "{% url 'update_consulta_grupos' slug=12345 %}".replace(/12345/, slug.toString());
-            $.ajax({
-              url: url_mask,
-              dataType: 'json',
-              success: function (data) {
-              var userGroups = data.userGroups;
+          console.log(usersGroups);
+          writeUsers(users, usersGroups);
                 
-                console.log(userGroups);
-
-                // for(var i = 0; i<userGroups.length;i++){
-                //   // if(userGroups.length == 1){
-                //   //   $("#result").append('<td>'+ userGroups[i][1] +'</td></tr>');
-                //   // }
-                //   console.log('aqui denuevo')
-
-                //   // $("#result").append('<td>'+ userGroups[i] +'</td>');
-
-                //   $row.append('<td>'+ userGroups[i] +',</td>');
-                //   //   $("#result").append('<td>'+ userGroups[i][1] +'</td>');
-                //   //   $("#result").append('<td>'+ userGroups[i][1] +'</td></tr>');
-                //   // }
-                  
-                // }
-
-                switch (userGroups.length) {
-                    case 1:
-                        $row.append('<td>'+ userGroups[0] +',</td>');
-                        break; 
-                    case 2:
-                        $row.append('<td>'+ userGroups[0] + ',' +  userGroups[1] + ',</td>');
-                }
-
-
-                $row.append('</tr>');
-
-              },async: false
-
-            });  
-
-
-
-                $("#result").append($row);
-
-
-          }
-        }, async: false
+        }
 
       });
+
+      function writeUsers (listUsers, listGroups){
+
+        for(var i = 0; i<listUsers.length; i++){
+            $row = $('<tr><td>'+ listUsers[i][0][1] +'</td>');
+            switch(listGroups[i].length){
+              case 1: 
+              $row.append('<td>' + listGroups[i][0][1]);
+              break;
+              case 2:
+              $row.append('<td>' + listGroups[i][0][1] + ' , ' + listGroups[i][1][1]);
+              break;
+            }
+            $row.append('</tr>');
+            $("#result").append($row);
+          }
+        
+
+      }
+
+      
 
       });
       
