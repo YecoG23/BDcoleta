@@ -2,6 +2,7 @@ BDColeta/settings/local.py
 
 local.py
 */common.py
+.ipynb
 
 ".py[cod]" 
 .py[cod]
