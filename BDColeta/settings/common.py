@@ -50,6 +50,8 @@ THIRD_PARTY_APPS = (
     'geoposition',
     'import_export',
     'pinax.messages',
+    'django_extensions',
+
 )
 
 LOCAL_APPS = (

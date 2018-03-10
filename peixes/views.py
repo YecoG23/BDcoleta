@@ -32,6 +32,7 @@ from django.template import loader, Context
 
 from guardian.shortcuts import assign_perm, get_objects_for_user
 from guardian.mixins import PermissionRequiredMixin
+from guardian.core import ObjectPermissionChecker #to get list of object with permission to unique object
 
 #IMPORT AND EXPORT
 from .resources import LoteResource, TecidoResource
@@ -90,15 +91,25 @@ class LoteListView( ListView):
     """Shows users a list of BDColeta"""
     model = Lote
 
+
     def get_context_data(self, **kwargs):
         context = super(LoteListView, self).get_context_data(**kwargs)
         tecidos = Tecido.objects.all()
-        # for tec in tecidos:
-        #     tec.lote=tec.lote.id[-1]
         projetos = list(Projeto.objects.all().values_list('id','nome'))
+        print(self.request.user)
+        print(type(self.request.user))
         context['projetos'] = projetos
         context['tecidos'] = tecidos
         return context
+
+    def get_queryset(self):
+        current_user = self.request.user
+        qs1 = get_objects_for_user(current_user,'can_view_lote',Lote.objects.all())
+        qs2 = Lote.objects.filter(publico=True)
+        qs3 = Lote.objects.filter(createdby=current_user)
+        qs_ok = (qs1 | qs2 | qs3).distinct()
+        return qs_ok
+
 
 class LoteDetailView(PermissionRequiredMixin, DetailView):
     """Shows users a single appointment"""
@@ -147,6 +158,7 @@ class LoteCreateView(CreatePopupMixin, SuccessMessageMixin, CreateView):
         
         lista_pesquisadores = User.objects.filter(groups__name='Pesquisador',profile__projeto__id=form.instance.projeto)
         curador_peixes = User.objects.get(groups__name='Curador')
+        administrador_peixes = User.objects.get(groups__name='Administrador')
         print(type(self.request.user))
         print(lista_pesquisadores)
         print(form.instance.projeto)
@@ -161,6 +173,12 @@ class LoteCreateView(CreatePopupMixin, SuccessMessageMixin, CreateView):
         assign_perm('can_edit_lote', curador_peixes, self.object)
         assign_perm('can_delete_lote', curador_peixes, self.object)
         assign_perm('can_view_lote', curador_peixes, self.object)
+
+        #assigment permission for the curador of base
+        assign_perm('can_edit_lote', administrador_peixes, self.object)
+        assign_perm('can_delete_lote', administrador_peixes, self.object)
+        assign_perm('can_view_lote', administrador_peixes, self.object)
+        
 
         #assigment permission for the all pesquisadores related
         if lista_pesquisadores:

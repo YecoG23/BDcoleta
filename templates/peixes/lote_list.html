@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load guardian_tags %}
 
 {% block title %}Lista de Lotes{% endblock title %}
 
@@ -71,10 +72,9 @@
                 <td>{{ lote.createdby }}</td>
               </tr>
             {% else %}
-                {% if lote.createdby == request.user or lote.publico %}
                     <tr>
                       <td><a href="{{ lote.get_absolute_url }}">{{ lote.pk }}</a></td>
-                      <td> {{ lote.numero_exemplares }}</td>
+                      <td> {{ lote.numero_exemplares }}, {{ forloop.counter0 }} </td>
                       <td>{% for det in lote.determinadores.all %}
                             {{ det.nome }},
                           {% endfor %}
@@ -95,9 +95,9 @@
                       </td>
                       <td>{{ lote.publico }}</td> 
                     </tr>
-                {% endif %}
             {% endif %}
           {% endfor %}
+
         </tbody>
       </table>
       <a class="btn btn-primary" href="{% url 'list_lotes_export' %}">Exportar como CSV</a> 

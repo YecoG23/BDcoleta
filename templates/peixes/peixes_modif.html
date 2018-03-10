@@ -18,33 +18,36 @@
         <div class="page-content inset">
           <div class="row">
           {% if perms.peixes.can_view_projeto %}
-            {% if num_projetos %}    
-            <h3 class="page-header">Projeto Atual: 
-              <small>
-                <select class="projetoss"> 
-                {% for pro in projetos%}
-                  <option value="{{pro.id}}">{{pro.nome}}</option>
-                {% endfor %}
-                </select>
-              </small>
-            </h3>
-            {% else%}
-              <h3 class="page-header">Nao tem nenhum projeto!.</h3>
-            {% endif %}
+                {% if num_projetos %}    
+                <h3 class="page-header">Projeto Atual: 
+                  <small>
+                    <select class="projetoss"> 
+                    {% for pro in projetos%}
+                      <option value="{{pro.id}}">{{pro.nome}}</option>
+                    {% endfor %}
+                    </select>
+                  </small>
+                </h3>
+                {% else%}
+                  <h3 class="page-header">Nao tem nenhum projeto!.</h3>
+                   <!-- ADICIONA PROJETO --> 
+                  {% if perms.peixes.can_add_projeto %}
+                    Crie um projeto agora <a href="{% url 'new_projeto' %}"><button type="button" class="btn btn-info">Criar</button></a>
+                  {% endif %}
+                {% endif %}
           </div>
           <div class="row">
-            {% if not num_projetos %}
-              {% if perms.peixes.can_add_projeto %}
-                Crie um projeto agora <a href="{% url 'new_projeto' %}"><button type="button" class="btn btn-info">Criar</button></a>
-              {% endif %}
-            {% else %}
-                
-            {% endif %}
+
+          
+           <!-- VER TODOS OS PROJETOS -->
             <div class="col-md-8 col-md-offset-10">
               <a href="{% url 'list_projetos' %}"><button type="button" class="btn btn-success">Ver todos os projetos</button></a>
             </div>
           </div>
 
+          {% if num_projetos %}    
+
+          <!-- INTEGRANTES DO PROJETO --> 
             <div class="row">
               <h3 class="page-header">Integrantes do Projeto</h3>
             </div>
@@ -93,14 +96,16 @@
               
             
           </div>
-          {% else %}
+          {% endif %}
+
+         {% else %}
             <h3 class="page-header">Nao pertence a nenhum projeto!.</h3>
             {{request.user.get_all_permissions}}
             <div class="pull-right">
               <a href="{% url 'list_projetos' %}"><button type="button" class="btn btn-success">Ver todos os projetos</button></a>
             </div>
-          {% endif%}
-            
+          
+         {% endif %}   
         </div>
       
       
