@@ -103,12 +103,16 @@ class LoteListView( ListView):
         return context
 
     def get_queryset(self):
-        current_user = self.request.user
-        qs1 = get_objects_for_user(current_user,'can_view_lote',Lote.objects.all())
-        qs2 = Lote.objects.filter(publico=True)
-        qs3 = Lote.objects.filter(createdby=current_user)
-        qs_ok = (qs1 | qs2 | qs3).distinct()
-        return qs_ok
+        if self.request.user.is_authenticated():
+            current_user = self.request.user
+            qs1 = get_objects_for_user(current_user,'can_view_lote',Lote.objects.all())
+            qs2 = Lote.objects.filter(publico=True)
+            qs3 = Lote.objects.filter(createdby=current_user)
+            qs_ok = (qs1 | qs2 | qs3).distinct()
+            return qs_ok
+        else:
+            return Lote.objects.none()
+        
 
 
 class LoteDetailView(PermissionRequiredMixin, DetailView):
