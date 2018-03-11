@@ -3,6 +3,9 @@ BDColeta/settings/local.py
 local.py
 */common.py
 .ipynb
+*/.ipynb/*
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
 
 ".py[cod]" 
 .py[cod]
