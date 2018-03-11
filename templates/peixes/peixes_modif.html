@@ -66,9 +66,7 @@
                                         <tr>
                                             <td>{{int.user.username}}</td>
                                             <td>
-                                                {% for g in int.user.groups.all %}
-                                                  {{g.name}}, 
-                                                {% endfor%}
+                                                {{int.user.groups.all | join:", "}}
                                             </td>
                                             
                                         </tr> 

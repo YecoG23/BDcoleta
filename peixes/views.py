@@ -131,18 +131,21 @@ class LoteCreateView(CreatePopupMixin, SuccessMessageMixin, CreateView):
     #contex_object_name = lote (doing itself by django)
     success_message = 'Lote criado com sucesso.'
     form_class = LoteForm
+    template_name = 'peixes/lote_form.html'
     #form_class = LoteForm
     #initial stuff for my form
     #today = datetime.datetime.now()
     #initial = {'data_coleta':today}
 
-    #aditional varivable in our template
+    # def get(self, request):
+    #     projetos_per_user = Projeto.objects.filter(profile__user__username=self.request.user.username)
+    #     if not projetos_per_user.exists():
+    #         messages.add_message(request, messages.WARNING, 'Não pertence a nenhum projeto, não pode criar lote!')
+    #     return render(request, self.template_name, {})
+
+    #aditional variable in our template
     def get_context_data(self, **kwargs):
         context = super(LoteCreateView, self).get_context_data(**kwargs)
-        #projetos_per_user = list(Projeto.objects.filter(profile__user__username=self.request.user.username).values_list('id','nome'))
-        #context['projetos_per_user'] = projetos_per_user
-        # projetos = list(Projeto.objects.all().values_list('id','nome'))
-        # context['projetos'] = projetos
         projetos_per_user = Projeto.objects.filter(profile__user__username=self.request.user.username)
         context['projetos_per_user'] = projetos_per_user
         if Lote.objects.exists():
@@ -156,7 +159,7 @@ class LoteCreateView(CreatePopupMixin, SuccessMessageMixin, CreateView):
         form.instance.createdby = current_user
         resp = super(LoteCreateView, self).form_valid(form)
         
-        lista_pesquisadores = User.objects.filter(groups__name='Pesquisador',profile__projeto__id=form.instance.projeto)
+        lista_pesquisadores = User.objects.filter(groups__name='Pesquisador',profile__projeto__nome=form.instance.projeto)
         curador_peixes = User.objects.get(groups__name='Curador')
         administrador_peixes = User.objects.get(groups__name='Administrador')
         print(type(self.request.user))
@@ -297,8 +300,6 @@ class TecidoDeleteView(DeleteView):
 
 
 #MANY STUFF
-
-
 def update_consulta(request):
     data = {
         'new_consulta': list(Lote.objects.all().values_list('id','especie'))
@@ -312,20 +313,17 @@ def update_consulta_integrantes(request, slug):
     #USERS OF DETERMINATE PROJECT
     usersThisProject = list(Profile.objects.filter(projeto=Projeto.objects.get(id=slug)).values_list('user',flat=True))
 
-
     #NEED USERS_ID AND USERNAMES
     usersIdUsername = []
 
     for i in usersThisProject:
        usersIdUsername.append(list(User.objects.filter(id=i).values_list('id','username'))) 
     
-
   #NEED USERS_ID AND GROUPS
     usersGroups = []
 
     for i in usersThisProject:
         usersGroups.append(list(Group.objects.filter(user=i).values_list('user','name')))
-
 
     data = {
         'users': usersIdUsername,
@@ -334,10 +332,6 @@ def update_consulta_integrantes(request, slug):
 
     return JsonResponse(data)
 
-
-#REGISTRATION VIEWS
-# def RegistrationViewBD(RegistrationView):
-#     pass
 
 #VIEWS PROJETOS
 class ProjetoListView(ListView):
@@ -393,7 +387,7 @@ class ProjetoCreateView(PRMDefault,SuccessMessageMixin, CreateView):
 
 def Export_CSV_Loteview(request):
     lote_resource = LoteResource()
-    queryset = get_objects_for_user(request.user, 'peixes.can_view_lote')
+    queryset = get_objects_for_user(request.user, 'can_view_lote', Lote.objects.all())
     dataset = lote_resource.export(queryset)
     response = HttpResponse(dataset.csv, content_type='text/csv')
     response['Content-Disposition'] = 'attachtment; filename = "lote.csv"'
@@ -417,7 +411,6 @@ def simple_upload(request):
         imported_data = dataset.load(new_lotes.read().decode('utf-8'))
         result = lote_resource.import_data(dataset, dry_run=True, raise_errors=False)  # Test the data import
         print(result)
-        # print(result.error)
 
         if result.has_errors():
             messages.error(request, ('Por favor corriga o(s)) erro(s)'))

@@ -52,12 +52,6 @@
     {% block page_css_datepicker %}
     
     {% endblock %}
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
-
-    {% block styles_leftsidebar %}
-    {% endblock %}
-
     
     
   </head>
@@ -134,17 +128,9 @@
 
               <li class="navbar-text">
                 Autorização  <span class="label label-default text-uppercase">
-                {% if not request.user.is_superuser%}
-                  {% if request.user.groups.all %}
-                      {% for group in request.user.groups.all %}
-                          {{group.name}},  
-                      {% endfor %}
-                  {% else %}
-                      CONVIDADO
-                  {% endif %}
-                {% else %}
-                  ADMINISTRADOR
-                {% endif%}
+             
+                  {{request.user.groups.all | join:", "}}
+                
                 </span>
               </li>
               <li class="dropdown">

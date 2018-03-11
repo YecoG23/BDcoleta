@@ -15,21 +15,20 @@
         <dt><strong>LIC #</strong></dt>
           <dd>{{ lote.id }}</dd>
 
+        <dt><strong>Projeto</strong></dt>
+          <dd>{{ lote.projeto }}</dd>
+
         <dt><strong>N° Exemplares:</strong></dt>
           <dd>{{ lote.numero_exemplares }}</dd>
 
         <dt><strong>Determinador(es):</strong></dt>
-          <dd>
-              {% for det in lote.determinadores.all %}
-                  {{ det.nome }},
-              {% endfor %}          
+          <dd>     
+              {{ lote.determinadores.all|join:", " }}  
           </dd>
 
         <dt><strong>Coletor(es):</strong></dt>
           <dd>
-              {% for col in lote.coletores.all %}
-                  {{ col.nome }},
-              {% endfor %}          
+              {{ lote.coletores.all|join:", " }}         
           </dd>
 
         <dt><strong>Tecido(s):</strong></dt>

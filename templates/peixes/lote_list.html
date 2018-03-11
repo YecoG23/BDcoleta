@@ -50,13 +50,11 @@
               <tr>
                 <td><a href="{{ lote.get_absolute_url }}">{{ lote.pk }}</a></td>
                 <td> {{ lote.numero_exemplares }}</td>
-                <td>{% for det in lote.determinadores.all %}
-                      {{ det.nome }},
-                    {% endfor %}
+                <td>
+                    {{ lote.determinadores.all|join:", " }}
                 </td>
-                <td>{% for col in lote.coletores.all %}
-                      {{ col.nome }},
-                    {% endfor %}
+                <td>
+                    {{ lote.coletores.all|join:", " }}
                 </td>
                 <td>{% for tec in tecidos %}
                       {% if tec.lote.id == lote.pk %}
@@ -74,14 +72,12 @@
             {% else %}
                     <tr>
                       <td><a href="{{ lote.get_absolute_url }}">{{ lote.pk }}</a></td>
-                      <td> {{ lote.numero_exemplares }}, {{ forloop.counter0 }} </td>
-                      <td>{% for det in lote.determinadores.all %}
-                            {{ det.nome }},
-                          {% endfor %}
+                      <td> {{ lote.numero_exemplares }} </td>
+                      <td>
+                          {{ lote.determinadores.all|join:", " }}
                       </td>
-                      <td>{% for col in lote.coletores.all %}
-                            {{ col.nome }},
-                          {% endfor %}
+                      <td>
+                          {{ lote.coletores.all|join:", " }}
                       </td>
                       <td>{% for tec in tecidos %}
                             {% if tec.lote.id == lote.pk %}
