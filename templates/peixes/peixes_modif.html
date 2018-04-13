@@ -35,6 +35,7 @@
                     Crie um projeto agora <a href="{% url 'new_projeto' %}"><button type="button" class="btn btn-info">Criar</button></a>
                   {% endif %}
                 {% endif %}
+          Pode-se observar todos os projetos, verificar se forma parte do projeto e solicitar acesso.
           </div>
           <div class="row">
 
@@ -52,6 +53,8 @@
               <h3 class="page-header">Integrantes do Projeto</h3>
             </div>
             <div class="row">
+              A tabela a seguir apresenta-se as pessoas que formam parte do projeto assim como o nivel de acesso no projeto.
+              <br><br>
               <div class="table-responsive">
                                 <table class="table table-striped" id="myTable">
                                     <thead>
@@ -83,12 +86,24 @@
                 <h3 class="page-header">Petições</h3>
               </div>
               <div class="row">
+                Esta parte dedica-se a conceder acesso a lotes ou projetos assim como conceder nivel de usuario (i.e., assistente, pesquisador, curador).
+                <br><br>
 
                 <!-- <a href="{% url 'pinax_messages:inbox' %}"><i class="fa fa-envelope"></i>Message Inbox</a> -->
                 
-
-              <div class="col-md-10 col-md-offset-10">
-                <a href=""><button type="button" class="btn btn-success">Visualizar</button></a>
+              <div class="col-md-2">
+                <a href="{% url 'revisar_pedidos' %}"><button type="button" class="btn btn-info">Revisar Pedidos</button></a>
+              </div>
+              <div class="col-md-8 col-md-offset-9">
+                {% with "lote" as lote%}
+                <a href="{% url 'pedidos' lote %}"><button type="button" class="btn btn-success">Lote</button></a>
+                {% endwith %}
+                {% with "projeto" as projeto%}
+                <a href="{% url 'pedidos' projeto %}"><button type="button" class="btn btn-success">Projeto</button></a>
+                {% endwith %}
+                {% with "usuario" as usuario%}
+                <a href="{% url 'pedidos' usuario %}"><button type="button" class="btn btn-success">Nivel de usuario</button></a>
+                {% endwith %}
               </div>
             </div>
               

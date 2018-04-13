@@ -369,6 +369,7 @@ class ProjetoCreateView(PRMDefault,SuccessMessageMixin, CreateView):
         print(curador_profile)
         print(self.request.user)
         print(type(self.request.user))
+        print(self.object)
         #GET THE CURRENT USER
         current_user = User.objects.get(id=self.request.user.id)
         #GET THE CURRENT PROFILE AND ADD
@@ -426,3 +427,27 @@ def simple_upload(request):
             'result':result
             })
     return render(request, 'simple_upload.html')
+
+
+#PEDIDOS
+
+def pedidos(request, item):
+    #Projetos with not permission per user
+    projeto_without_acess = Projeto.objects.exclude(profile__user=request.user)
+    if request.method == 'POST':
+        #projetos that user wants to participate
+        projetos_desejados = request.POST.getlist('projetos[]')
+        print(projetos_desejados)
+        request.session['projetos_desejados'] = projetos_desejados
+
+    return render(request,'peixes/pedidos_lote_projeto_usuario.html', {
+        'item': item,
+        'projetos_notusers':projeto_without_acess, 
+        })
+
+def revisar_pedidos(request):
+    #get the list of projetos_desejados from pedidos_view throght request session django
+    projetos_desejados = request.session['projetos_desejados']
+    print(projetos_desejados)
+    return render(request, 'peixes/revisar_pedidos.html', {})
+    

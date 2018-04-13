@@ -97,10 +97,14 @@
       <a class="btn btn-default" href="{% url 'edit_lote' lote.id %}">Editar</a>
       <a class="btn btn-danger" data-method="delete" href="{% url 'delete_lote' lote.id %}">Apagar</a>
     </div>
-    <!-- <div class="col-lg-6">
+    <div class="col-lg-6">
       <div class="page-header">
-        <h1>Possuem acesso</h1>
+        <h1>Permisos para este lote</h1>
       </div>
-    </div> -->
+      <d1 class="d1-horizontal">
+        <dt><strong>Projeto</strong></dt>
+          <dd>{{ lote.projeto }}</dd>
+      </d1>
+    </div>
   </div>
 {% endblock %}

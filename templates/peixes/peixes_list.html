@@ -33,17 +33,17 @@
                               </div>
                               {% if projetos_per_user %}
                                         <div class="panel-footer">
-                                              {% if not proj.id in projetos_per_user %}
-                                                <a href="#">
-                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Não tem acesso
-                                                </a>
-                                              {% else %}
-                                                <span class="glyphicon glyphicon-ok"></span> Tem acesso
-                                              {% endif %}
-                                            <div class="clearfix"></div>
+                                                Acesso: <span class="glyphicon glyphicon-ok"></span>
                                         </div>
                                     
-                                  
+                              {% else %}
+                                <div class="panel-footer">
+                                  Acesso: 
+                                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    <a href="{% url 'pinax_messages:inbox' %}">
+                                      Solicitar
+                                    </a>
+                                </div>    
                               {% endif %}
 
                           </div>

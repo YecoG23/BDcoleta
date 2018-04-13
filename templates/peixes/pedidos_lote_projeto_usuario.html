@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Pedidos {% endblock title %}
+
+{% block page_select_css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<style type='text/css'>
+
+#projetos{
+ width:250px;   
+}
+
+#projetos option{
+ width:100px;   
+}
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<h3 class="page-header">Pedido de {{item}}</h3>
+	<dir class="col-md-6">
+		<form class="form-horizontal" method="post">
+
+		{% csrf_token %}
+
+		{% if item == "lote" %}
+			lote
+		{% elif item == "projeto" %}
+			<label for="id_projetos">
+	                Selecione os projetos que deseja participar: 
+	        </label>
+			<select class="form-control js-example-basic-multiple" name="projetos[]" multiple="multiple">
+				{% for pro in projetos_notusers %}
+				  <option value="{{pro.id}}">{{pro.nome}}</option>
+				{% endfor %}
+			</select>
+			<br><br>
+			<div class="col-md-offset-4 col-sm-8">
+	            <a href="{% url 'home_peixes' %}" class="btn btn-default">Cancel</a>
+	            <button type="submit" class="btn btn-primary">
+				Enviar 
+	            </button>
+	          </div>
+		{% elif item == "usuario" %}
+			usuario
+		{% endif %}
+	</form>
+
+	</dir>
+
+</div>
+
+
+{% endblock %}
+
+{% block select2_js_pag %}
+<script>
+	 $(document).ready(function() {
+	    $('.js-example-basic-multiple').select2();
+	});
+</script>
+{% endblock %}

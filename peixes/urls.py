@@ -21,7 +21,7 @@ from .views import DeterminadorListView, ColetorListView, TecidoListView
 from .views import Export_CSV_Loteview, Export_CSV_Tecidoview, simple_upload
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import update_consulta, update_consulta_integrantes
+from .views import update_consulta, update_consulta_integrantes, pedidos, revisar_pedidos
 
 
 
@@ -81,6 +81,10 @@ urlpatterns = [
     #PROJETOS
     url(r'^lista$', ProjetoListView.as_view(), name='list_projetos'),
     url(r'^projeto/add$', ProjetoCreateView.as_view(), name='new_projeto'),
+
+    #PEDIDOS
+    url(r'^pedidos/(?P<item>[-\w]+)$', pedidos, name='pedidos'),
+    url(r'^pedidos/$', revisar_pedidos, name='revisar_pedidos'),
 
 
 
