@@ -1,6 +1,9 @@
-Prezado(a): {{user}}
-Clique aqui para ativar a conta :{{site}}/accounts/activate/{{activation_key}}
+{% autoespace off %}
+Prezado(a): {{user}},
+Clique aqui para ativar a conta : http://{{site}}/accounts/activate/{{activation_key}}
 
 Este link é valido sómente por {{expiration_days}}
 
-Site: {{site}}
+Site: http://{{site}}
+
+{% autoescape off %}
