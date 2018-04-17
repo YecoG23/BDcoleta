@@ -77,7 +77,7 @@ class PeixesView(TemplateView):
             print(projetos_per_user)
             num_projetos = projetos_per_user.count()
             print(num_projetos)
-            curador_peixes = User.objects.get(groups__name='Curador')
+            curador_peixes = User.objects.filter(groups__name='Curador')
             # list_integrantes = Projeto.objects.get(id=2).usuario
             last_projeto  = Projeto.objects.latest('id')
             list_integrantes = Profile.objects.filter(projeto=last_projeto)
