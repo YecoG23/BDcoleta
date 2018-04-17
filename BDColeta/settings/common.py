@@ -153,17 +153,22 @@ LOGIN_REDIRECT_URL = '/'
 
 #EMAIL BACKEND AND CONFIGURATIONS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.mailgun.org'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'postmaster@ns01.freenom.com'
-# EMAIL_HOST_PASSWORD = 'yecofreenom23'
-# EMAIL_USE_TLS = True
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'BDColeta@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+#SENDGRID CONFIG
+EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
+EMAIL_HOST_USER = 'yosh23'
+EMAIL_HOST_PASSWORD = 'yecoSendgrid23'
+EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'BDColeta Admin'
+
+#GMAIL CONFIGURATION
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'BDColeta@gmail.com'
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# EMAIL_PORT = 587
+
 
 #DJANGO REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7

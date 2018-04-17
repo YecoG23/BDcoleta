@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
 
 {% block title %} Pedidos {% endblock title %}
 
@@ -27,18 +29,16 @@
 		{% csrf_token %}
 
 		{% if item == "lote" %}
-			lote
+			{{form.lote |attr:"class:form-control js-example-basic-multiple" | as_crispy_field}}
+			<div class="col-md-offset-4 col-sm-8">
+	            <a href="{% url 'home_peixes' %}" class="btn btn-default">Voltar</a>
+	            <button type="submit" class="btn btn-primary">
+				Enviar 
+	            </button>
+	        </div>
 		{% elif item == "projeto" %}
 		{% if projetos_notusers %}
-			<label for="id_projetos">
-	                Selecione os projetos que deseja participar: 
-	        </label>
-			<select class="form-control js-example-basic-multiple" name="projetos[]" multiple="multiple">
-				{% for pro in projetos_notusers %}
-				  <option value="{{pro.id}}">{{pro.nome}}</option>
-				{% endfor %}
-			</select>
-			<br><br>
+			{{form.projeto |attr:"class:form-control js-example-basic-multiple" | as_crispy_field}}
 			<div class="col-md-offset-4 col-sm-8">
 	            <a href="{% url 'home_peixes' %}" class="btn btn-default">Voltar</a>
 	            <button type="submit" class="btn btn-primary">
@@ -56,7 +56,13 @@
 	        </div>
 	    {% endif %}
 		{% elif item == "usuario" %}
-			usuario
+			{{form.user |attr:"class:form-control js-example-basic-multiple" | as_crispy_field}}
+			<div class="col-md-offset-4 col-sm-8">
+	            <a href="{% url 'home_peixes' %}" class="btn btn-default">Voltar</a>
+	            <button type="submit" class="btn btn-primary">
+				Enviar 
+	            </button>
+	        </div>
 		{% endif %}
 	</form>
 

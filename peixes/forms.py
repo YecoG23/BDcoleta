@@ -1,11 +1,12 @@
 from django.forms import ModelForm, DateTimeInput, NumberInput, SelectMultiple, Select, Textarea, ChoiceField, ModelMultipleChoiceField
 from django.forms.models import ModelChoiceField, ModelMultipleChoiceField
 from django.utils.translation import ugettext_lazy as _
-from .models import Determinação, Coletor, Tecido, Lote, Projeto, Profile
+from .models import Determinação, Coletor, Tecido, Lote, Projeto, Profile, Peticoes
 from django.core.urlresolvers import reverse_lazy
 from django_addanother.widgets import AddAnotherWidgetWrapper, AddAnotherEditSelectedWidgetWrapper
 from django_addanother.contrib.select2 import Select2MultipleAddAnother, Select2EditSelected
 from django.contrib.auth.models import User
+from guardian.core import ObjectPermissionChecker
 
 #INITIAL STUFF
 
@@ -89,5 +90,14 @@ class UserForm (ModelForm):
 	class Meta():
 		model = User
 		fields = ['username']
-			
+
+# class PeticaoForm (ModelForm):
+# 	class Meta():
+# 		model = Peticoes
+# 		fields = '__all__'
+
+# 	def __init__(self, *args, **kwargs):
+# 		user = kwargs.pop('user')
+# 		super(PeticaoForm, self).__init__(*args, **kwargs)
+# 		self.fields['lote'].queryset = Lote.objects.filter(id__in =[lote for lote in Lote.objects.all() if not ObjectPermissionChecker(User.objects.get(username=user)).has_perm('can_view_lote', lote)]) & Lote.objects.filter()
 		

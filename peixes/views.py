@@ -22,7 +22,7 @@ from django.db import transaction
 
 #from .forms import CreateLoteForm
 
-from .models import Lote, Determinação, Coletor, Tecido, Projeto, Profile
+from .models import Lote, Determinação, Coletor, Tecido, Projeto, Profile, Peticoes
 from django.contrib.auth.models import User, Group
 
 #Exportacao
@@ -431,23 +431,55 @@ def simple_upload(request):
 
 #PEDIDOS
 
-def pedidos(request, item):
-    #Projetos with not permission per user
-    projeto_without_acess = Projeto.objects.exclude(profile__user=request.user)
-    if request.method == 'POST':
-        #projetos that user wants to participate
-        projetos_desejados = request.POST.getlist('projetos[]')
-        print(projetos_desejados)
-        request.session['projetos_desejados'] = projetos_desejados
+#TENTATIVA 1
 
-    return render(request,'peixes/pedidos_lote_projeto_usuario.html', {
-        'item': item,
-        'projetos_notusers':projeto_without_acess, 
-        })
+# def pedidos(request, item):
+#     #Projetos with not permission per user
+#     projeto_without_acess = Projeto.objects.exclude(profile__user=request.user)
+#     if request.method == 'POST':
+#         #projetos that user wants to participate
+#         projetos_desejados = request.POST.getlist('projetos[]')
+#         print(projetos_desejados)
+#         request.session['projetos_desejados'] = projetos_desejados
 
-def revisar_pedidos(request):
-    #get the list of projetos_desejados from pedidos_view throght request session django
-    projetos_desejados = request.session['projetos_desejados']
-    print(projetos_desejados)
-    return render(request, 'peixes/revisar_pedidos.html', {})
+#     return render(request,'peixes/pedidos_lote_projeto_usuario.html', {
+#         'item': item,
+#         'projetos_notusers':projeto_without_acess, 
+#         })
+
+# def revisar_pedidos(request):
+#     #get the list of projetos_desejados from pedidos_view throght request session django
+#     projetos_desejados = request.session['projetos_desejados']
+#     print(projetos_desejados)
+#     return render(request, 'peixes/revisar_pedidos.html', {})
+#     
+
+class PedidoCreateView(CreateView):
     
+    model = Peticoes
+    fields = '__all__'
+    #form_class = PeticaoForm
+
+    #contex_object_name = lote (doing itself by django)
+    #success_message = 'Lote criado com sucesso.'
+    # form_class = LoteForm
+    #template_name = 'peixes/lote_form.html'
+
+    # def get_form_kwargs(self):
+    #     kwargs = super(PedidoCreateView, self).get_form_kwargs()
+    #     kwargs['user'] = self.request.user
+    #     return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(PedidoCreateView, self).get_context_data(**kwargs)
+        context['item'] = self.kwargs['item']
+        context['projetos_notusers'] = Projeto.objects.exclude(profile__user=self.request.user)
+        return context
+
+    def form_valid(self, form):
+        form.instance.current_user = self.request.user
+        resp = super(PedidoCreateView, self).form_valid(form)
+        return resp
+
+
+        

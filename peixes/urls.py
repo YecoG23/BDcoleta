@@ -14,14 +14,15 @@ from .views import (
                     TecidoUpdateView,
                     TecidoDetailView,
                     TecidoDeleteView, 
-                    uptade_profile
+                    uptade_profile,
+                    PedidoCreateView,
     )
 from .views import ProjetoListView, PeixesView, ProjetoCreateView
 from .views import DeterminadorListView, ColetorListView, TecidoListView
 from .views import Export_CSV_Loteview, Export_CSV_Tecidoview, simple_upload
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import update_consulta, update_consulta_integrantes, pedidos, revisar_pedidos
+from .views import update_consulta, update_consulta_integrantes
 
 
 
@@ -83,8 +84,8 @@ urlpatterns = [
     url(r'^projeto/add$', ProjetoCreateView.as_view(), name='new_projeto'),
 
     #PEDIDOS
-    url(r'^pedidos/(?P<item>[-\w]+)$', pedidos, name='pedidos'),
-    url(r'^pedidos/$', revisar_pedidos, name='revisar_pedidos'),
+    url(r'^pedidos/(?P<item>[-\w]+)$', PedidoCreateView.as_view(), name='pedidos'),
+    #url(r'^pedidos/$', revisar_pedidos, name='revisar_pedidos'),
 
 
 

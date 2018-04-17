@@ -148,4 +148,17 @@ class Tecido(models.Model):
         verbose_name_plural = "Tecidos"
 
 
-        
+class Peticoes(models.Model):
+    lote = models.ManyToManyField(Lote, blank = True)
+    projeto = models.ManyToManyField(Projeto, blank = True)
+    user = models.ManyToManyField(User, blank = True)
+    current_user = models.CharField(max_length=50)
+
+    def get_absolute_url(self):
+        return reverse('home_peixes')
+
+    def __str__(self):
+        return self.current_user
+
+    class Meta:
+        verbose_name_plural = "Peticoes"
