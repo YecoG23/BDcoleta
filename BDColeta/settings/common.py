@@ -157,10 +157,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #SENDGRID CONFIG
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'yosh23'
+EMAIL_HOST_USER = 'oscco.yoshin@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'BDColeta Admin'
+DEFAULT_FROM_EMAIL = 'bdcoleta@gmail.com'
+ADMINS = [('Yoshin','oscco.yoshin@gmail.com')]
 
 #GMAIL CONFIGURATION
 # EMAIL_USE_TLS = True
