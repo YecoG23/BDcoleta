@@ -408,11 +408,10 @@ def Export_CSV_Tecidoview(request):
 ##IMPORTACAO
 
 def simple_upload(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES['myfile']:
         lote_resource = LoteResource()
         dataset = Dataset()
         new_lotes = request.FILES['myfile']
-
         imported_data = dataset.load(new_lotes.read().decode('utf-8'))
         result = lote_resource.import_data(dataset, dry_run=True, raise_errors=False)  # Test the data import
         print(result)
@@ -424,8 +423,9 @@ def simple_upload(request):
             lote_resource.import_data(dataset, dry_run=False,raise_errors=False)  # Actually import now
 
         return render(request, 'simple_upload.html', {
-            'result':result
-            })
+                'result':result
+                })
+        
     return render(request, 'simple_upload.html')
 
 

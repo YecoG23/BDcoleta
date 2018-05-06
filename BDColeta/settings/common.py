@@ -161,7 +161,7 @@ EMAIL_HOST_USER = 'yosh23'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'bdcoleta@gmail.com'
-ADMINS = [('Yoshin','oscco.yoshin@gmail.com')]
+
 
 #GMAIL CONFIGURATION
 # EMAIL_USE_TLS = True
